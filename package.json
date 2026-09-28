@@ -1,0 +1,44 @@
+{
+	"name": "accessible-html-sitemap",
+	"version": "1.0.0",
+	"description": "Accessible (WCAG 2.1 AA) HTML sitemap with Thai language support.",
+	"author": "Parich Suriya",
+	"license": "GPL-2.0-or-later",
+	"main": "build/index.js",
+	"files": [
+		"accessible-html-sitemap.php",
+		"uninstall.php",
+		"readme.txt",
+		"admin",
+		"build",
+		"includes",
+		"languages",
+		"src"
+	],
+	"scripts": {
+		"build": "wp-scripts build --webpack-copy-php --blocks-manifest",
+		"format": "wp-scripts format",
+		"i18n": "node bin/i18n.js",
+		"lint:css": "wp-scripts lint-style",
+		"lint:js": "wp-scripts lint-js",
+		"packages-update": "wp-scripts packages-update",
+		"plugin-zip": "wp-scripts plugin-zip",
+		"start": "wp-scripts start --webpack-copy-php --blocks-manifest",
+		"test:php": "node tests/run-php-tests.js",
+		"test:a11y": "node tests/a11y/run-axe.js",
+		"test:reflow": "node tests/a11y/run-reflow.js",
+		"test:media": "node tests/a11y/run-media.js",
+		"test": "npm run test:php && npm run test:a11y && npm run test:reflow && npm run test:media",
+		"bench": "node tests/run-php-tests.js tests/bench.php"
+	},
+	"devDependencies": {
+		"@wordpress/block-editor": "^18.0.0",
+		"@wordpress/blocks": "^16.1.0",
+		"@wordpress/components": "^41.0.0",
+		"@wordpress/i18n": "^6.29.0",
+		"@wordpress/scripts": "^36.0.0",
+		"@wordpress/server-side-render": "^6.32.0",
+		"axe-core": "^4.13.0",
+		"jsdom": "^30.1.1"
+	}
+}

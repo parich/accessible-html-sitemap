@@ -1,0 +1,602 @@
+# Copyright (C) 2026 Mr.Parich Suriya
+# This file is distributed under the GPL-2.0-or-later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Accessible HTML Sitemap 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessible-html-sitemap\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-28T06:17:46+00:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: accessible-html-sitemap\n"
+
+#. Plugin Name of the plugin
+#: accessible-html-sitemap.php
+#: includes/class-accessible-sitemap-settings.php:128
+#: includes/class-accessible-sitemap-settings.php:129
+#: includes/class-accessible-sitemap-settings.php:170
+#: build/sitemap/index.js:3
+msgid "Accessible HTML Sitemap"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: accessible-html-sitemap.php
+msgid "https://github.com/parich/accessible-html-sitemap"
+msgstr ""
+
+#. Description of the plugin
+#: accessible-html-sitemap.php
+msgid "Accessible (WCAG 2.1 AA) HTML sitemap with Thai language support. Use the Accessible HTML Sitemap block or the [accessible_sitemap] shortcode."
+msgstr ""
+
+#. Author of the plugin
+#: accessible-html-sitemap.php
+msgid "Mr.Parich Suriya"
+msgstr ""
+
+#. Author URI of the plugin
+#: accessible-html-sitemap.php
+msgid "https://github.com/parich"
+msgstr ""
+
+#: accessible-html-sitemap.php:149
+#: includes/class-accessible-sitemap-settings.php:421
+msgid "Donate"
+msgstr ""
+
+#: includes/class-accessible-sitemap-renderer.php:368
+msgid "Sitemap"
+msgstr ""
+
+#. translators: %s: section title, e.g. "Pages"
+#: includes/class-accessible-sitemap-renderer.php:370
+#, php-format
+msgid "Sitemap: %s"
+msgstr ""
+
+#: includes/class-accessible-sitemap-renderer.php:376
+msgid "On this page:"
+msgstr ""
+
+#: includes/class-accessible-sitemap-renderer.php:401
+msgid "Back to contents"
+msgstr ""
+
+#: includes/class-accessible-sitemap-renderer.php:538
+#: includes/class-accessible-sitemap-settings.php:149
+#: build/sitemap/index.js:1
+msgid "Pages"
+msgstr ""
+
+#: includes/class-accessible-sitemap-renderer.php:624
+#: includes/class-accessible-sitemap-settings.php:150
+#: build/sitemap/index.js:1
+msgid "Posts by category"
+msgstr ""
+
+#. translators: %s: category name, linked
+#. translators: %s: category name
+#: includes/class-accessible-sitemap-renderer.php:642
+#: includes/class-accessible-sitemap-renderer.php:699
+#, php-format
+msgid "Category: %s"
+msgstr ""
+
+#. translators: 1: number of posts not listed, 2: category name
+#: includes/class-accessible-sitemap-renderer.php:653
+#, php-format
+msgid "%1$d more in %2$s"
+msgstr ""
+
+#. translators: %d: number of posts in the category and its sub-categories
+#: includes/class-accessible-sitemap-renderer.php:701
+#, php-format
+msgid "(%d post)"
+msgid_plural "(%d posts)"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: category name
+#: includes/class-accessible-sitemap-renderer.php:703
+#, php-format
+msgid "All posts in %s"
+msgstr ""
+
+#. translators: %d: post ID (same wording as the WordPress page list)
+#: includes/class-accessible-sitemap-renderer.php:900
+#, php-format
+msgid "#%d (no title)"
+msgstr ""
+
+#: includes/class-accessible-sitemap-renderer.php:916
+#: build/sitemap/index.js:1
+msgid "Categories"
+msgstr ""
+
+#: includes/class-accessible-sitemap-renderer.php:925
+#: build/sitemap/index.js:1
+msgid "Tags"
+msgstr ""
+
+#: includes/class-accessible-sitemap-renderer.php:939
+#: includes/class-accessible-sitemap-settings.php:151
+#: build/sitemap/index.js:1
+msgid "Archives"
+msgstr ""
+
+#: includes/class-accessible-sitemap-renderer.php:948
+#: includes/class-accessible-sitemap-settings.php:152
+#: build/sitemap/index.js:1
+msgid "Authors"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:141
+#: includes/class-accessible-sitemap-settings.php:165
+msgid "Settings"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:166
+msgid "How to use"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:171
+msgid "Accessible HTML Sitemap pages"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:196
+msgid "post title"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:197
+msgid "post URL"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:198
+msgid "date in the site's date format (Settings → General), e.g. 27 September 2026"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:199
+msgid "year, e.g. 2026"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:200
+msgid "month, e.g. 09"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:201
+msgid "day of the month, e.g. 27"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:202
+msgid "hour, e.g. 15"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:203
+msgid "minute, e.g. 43"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:204
+msgid "second, e.g. 33"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:205
+msgid "post ID, e.g. 423"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:206
+msgid "name of the first category"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:212
+msgid "Posts"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:215
+msgid "How to display each post"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:219
+msgid "Placeholders:"
+msgstr ""
+
+#. translators: %s: default template
+#: includes/class-accessible-sitemap-settings.php:228
+#, php-format
+msgid "Allowed HTML: a, strong, em, b, i, span, br. Default: %s"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:235
+#: includes/class-accessible-sitemap-settings.php:238
+msgid "Year"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:241
+msgid "Show years in the Buddhist Era (B.E.)"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:243
+msgid "Applies to {date}, {year} and the archive list: 2026 is shown as 2569. On by default when the site language is Thai."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:248
+#: build/sitemap/index.js:3
+msgid "Posts per category"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:251
+msgid "0 lists every post. Otherwise the first posts of each category are listed, followed by a link to the category page for the rest — recommended for sites with thousands of posts."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:255
+#: includes/class-accessible-sitemap-settings.php:258
+msgid "Posts in several categories"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:261
+msgid "List a post under every category it belongs to"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:263
+msgid "Otherwise a post is listed once, under its first category."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:269
+msgid "Exclude from the full sitemap"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:270
+msgid "These settings apply to a sitemap without the \"only\" attribute. A sitemap with only=\"…\" always shows that content."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:273
+#: includes/class-accessible-sitemap-settings.php:275
+msgid "Hide sections"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:280
+#: includes/class-accessible-sitemap-settings.php:282
+msgid "Hide content types"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:288
+#: includes/class-accessible-sitemap-settings.php:290
+msgid "Hide taxonomies"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:295
+msgid "Hide pages and posts"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:298
+msgid "IDs separated by commas, e.g. 12,45,78."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:302
+#: includes/class-accessible-sitemap-settings.php:305
+msgid "Password-protected content"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:308
+msgid "Hide pages, posts and other content protected by a password"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:315
+msgid "Links"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:318
+#: includes/class-accessible-sitemap-settings.php:321
+msgid "Search engines"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:324
+msgid "Add rel=\"nofollow\" to the links"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:326
+msgid "Usually best left off: it tells search engines not to follow the sitemap links."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:364
+msgid "The full sitemap: pages, posts by category, other content types and taxonomies (plus archives and authors unless hidden in the settings)."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:365
+msgid "Only one kind of content. Also: post, category, tag, archive, author, or the name of a public content type or taxonomy (listed below)."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:366
+msgid "Order pages by: post_title, menu_order, post_date, post_modified, ID, post_author, post_name."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:367
+msgid "Order categories and their posts; order is ASC or DESC. Categories also accept: id, name, slug, count, term_group."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:368
+msgid "Order authors by: name, email, url, registered, id, user_login, post_count."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:369
+msgid "Heading level of each section (2–6, default 2). Pick the level that follows the headings above the sitemap on the page."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:370
+msgid "Hide the \"On this page\" links shown when there are two or more sections."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:371
+msgid "Hide the section headings (the \"On this page\" links are hidden too)."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:372
+msgid "Hide the word \"Category:\" before category names."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:373
+msgid "Plain nested lists instead of the tree with connecting lines (the default). For the block, pick the \"List\" style."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:374
+msgid "Categories can be folded away, expanded at first; collapsible=\"closed\" starts them folded."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:375
+msgid "At most 20 posts per category, then a link to the category page. Overrides the setting; 0 lists every post."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:376
+msgid "Rename a section. Also: posts_title, categories_title, tags_title, archives_title, authors_title."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:377
+msgid "Private pages only. Shown only to users who can read private pages."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:384
+#: includes/class-accessible-sitemap-settings.php:390
+msgid "Shortcode"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:385
+msgid "Add the \"Accessible HTML Sitemap\" block, or one of these shortcodes, to any page, post or template."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:387
+msgid "Shortcode examples"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:391
+msgid "Shows"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:405
+msgid "Content types and taxonomies on this site"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:413
+msgid "Coming from WP Sitemap Page"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:414
+msgid "Existing [wp_sitemap_page] shortcodes keep working once WP Sitemap Page is deactivated: they are shown by this plugin with the same attributes. Its settings are copied the first time this plugin runs."
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:419
+msgid "Support this plugin"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:420
+msgid "Accessible HTML Sitemap is free, with every feature for everyone. If it is useful to you, you can support its development:"
+msgstr ""
+
+#: includes/class-accessible-sitemap-settings.php:422
+msgid "Secure payment by Stripe."
+msgstr ""
+
+#: build/sitemap/index.js:1
+msgid "Everything (full sitemap)"
+msgstr ""
+
+#. translators: %d: heading level, 2 to 6
+#: build/sitemap/index.js:3
+#, js-format
+msgid "Heading %d"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "There is nothing to list with these settings."
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Menu order, then title"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Title"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Date published"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Date modified"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Categories by name, newest posts first"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Categories by number of posts"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Posts by name"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Posts by date"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Name"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Number of posts"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Slug"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Date registered"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Newest first"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Menu order"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Content"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Show"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Order by"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Direction"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Default"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Ascending"
+msgstr ""
+
+#: build/sitemap/index.js:3
+msgid "Descending"
+msgstr ""
+
+#. translators: %d: posts per category in the plugin settings (0 = all)
+#: build/sitemap/index.js:4
+#, js-format
+msgid "Empty: use the plugin setting (%d). 0: every post."
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Collapsible categories"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Visitors can fold each category away. Expanded is the safer start: search in page and screen readers reach every link."
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Off"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Expanded"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Collapsed"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Private pages only"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Shown only to users who can read private pages."
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Headings"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Section headings"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Heading level"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Pick the level that follows the headings above the sitemap on the page."
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "“On this page” links"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Shown when there are two or more sections."
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Show “Category:” before category names"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Section titles"
+msgstr ""
+
+#: build/sitemap/index.js:4
+msgid "Leave empty to use the default title."
+msgstr ""
+
+#: build/sitemap/block.json
+msgctxt "block title"
+msgid "Accessible HTML Sitemap"
+msgstr ""
+
+#: build/sitemap/block.json
+msgctxt "block description"
+msgid "An accessible list of the site's pages, posts by category and other content, with jump links to each section."
+msgstr ""
+
+#: build/sitemap/block.json
+msgctxt "block keyword"
+msgid "sitemap"
+msgstr ""
+
+#: build/sitemap/block.json
+msgctxt "block keyword"
+msgid "site map"
+msgstr ""
+
+#: build/sitemap/block.json
+msgctxt "block keyword"
+msgid "แผนผังเว็บไซต์"
+msgstr ""
+
+#: build/sitemap/block.json
+msgctxt "block style label"
+msgid "Tree"
+msgstr ""
+
+#: build/sitemap/block.json
+msgctxt "block style label"
+msgid "List"
+msgstr ""

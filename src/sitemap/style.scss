@@ -1,0 +1,176 @@
+/**
+ * Front-end (and editor) styles for the sitemap.
+ *
+ * Colors and fonts are inherited from the theme on purpose: text contrast
+ * (WCAG 1.4.3) belongs to the theme. Sizes are in rem/em and nothing has a
+ * fixed height, so text can be resized (1.4.4), reflow at 320px (1.4.10) and
+ * take custom text spacing (1.4.12).
+ */
+
+.accessible-sitemap {
+	box-sizing: border-box;
+	overflow-wrap: anywhere;
+	// Room for Thai tone marks and upper/lower vowels so stacked
+	// characters on neighbouring lines never touch.
+	line-height: 1.6;
+
+	// Visible keyboard focus (2.4.7). currentcolor follows the link
+	// color, which the theme already keeps readable on its background.
+	// Specific enough to beat a theme's `a:focus { outline: none }`.
+	a:focus-visible,
+	summary:focus-visible {
+		outline: 0.125rem solid currentcolor;
+		outline-offset: 0.125rem;
+		border-radius: 0.125rem;
+	}
+}
+
+/**
+ * Tree (the default look; the "List" block style or style="list" keeps
+ * plain nested lists). Lines are drawn with CSS only: the markup stays
+ * nested lists, which screen readers announce with their level — there is
+ * no ARIA tree widget to learn. Removing the bullets keeps list semantics
+ * in Safari/VoiceOver because the lists are inside a <nav>.
+ *
+ * Lines use the text color at half opacity (decorative: the indentation
+ * and the list structure carry the meaning). Logical properties, so the
+ * tree mirrors in right-to-left languages.
+ */
+.accessible-sitemap:not(.is-style-list) .accessible-sitemap__section {
+	--accessible-sitemap-branch: 0.8em; // Middle of the first line (line-height 1.6).
+
+	> ul,
+	ul ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+
+	> ul {
+		margin-block: 0.5em 1.5em;
+	}
+
+	> ul:has(+ .accessible-sitemap__back) {
+		margin-block-end: 0;
+	}
+
+	ul ul {
+		margin-inline-start: 0.6em;
+	}
+
+	li {
+		position: relative;
+		padding-inline-start: 1.4em;
+	}
+
+	li::before,
+	li::after {
+		content: "";
+		position: absolute;
+		inset-inline-start: 0.35em;
+		opacity: 0.5;
+		pointer-events: none;
+	}
+
+	// Trunk: runs the height of the item, down to its next sibling.
+	li::before {
+		top: 0;
+		bottom: 0;
+		border-inline-start: 1px solid currentcolor;
+	}
+
+	// Branch to the item's first line.
+	li::after {
+		top: var(--accessible-sitemap-branch);
+		width: 0.8em;
+		border-top: 1px solid currentcolor;
+	}
+
+	// The last child ends the trunk at its branch.
+	li:last-child::before {
+		bottom: auto;
+		height: var(--accessible-sitemap-branch);
+	}
+}
+
+/**
+ * Collapsible categories (collapsible="open|closed").
+ */
+.accessible-sitemap summary {
+	cursor: pointer;
+}
+
+.accessible-sitemap__count {
+	font-weight: 400;
+}
+
+.accessible-sitemap__toc-label {
+	margin-bottom: 0.25em;
+	font-weight: 600;
+}
+
+.accessible-sitemap__toc {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 0.25em 1.5em;
+	margin: 0 0 1.5em;
+	padding: 0;
+	list-style: none;
+}
+
+.accessible-sitemap__category-title {
+	font-weight: 600;
+}
+
+// "Back to contents" after each section (with the table of contents only).
+.accessible-sitemap__back {
+	margin-block: 0.5em 1.5em;
+}
+
+/**
+ * High contrast: Windows contrast themes (forced colors) and "increase
+ * contrast" settings. The tree lines are drawn at full strength; forced
+ * colors already paints them in the text color, as they use currentcolor.
+ */
+@media (forced-colors: active), (prefers-contrast: more) {
+
+	.accessible-sitemap:not(.is-style-list) .accessible-sitemap__section {
+
+		li::before,
+		li::after {
+			opacity: 1;
+		}
+	}
+}
+
+/**
+ * Print: links cannot be followed on paper, so the table of contents and
+ * the "Back to contents" links are left out, and collapsed categories print
+ * open (in browsers that support ::details-content), without the toggle
+ * arrow. Section headings stay on the same page as their list.
+ */
+@media print {
+
+	.accessible-sitemap__toc-label,
+	.accessible-sitemap__toc,
+	.accessible-sitemap__back {
+		display: none;
+	}
+
+	.accessible-sitemap details::details-content {
+		display: block;
+		content-visibility: visible;
+	}
+
+	.accessible-sitemap summary {
+		list-style: none;
+
+		&::-webkit-details-marker {
+			display: none;
+		}
+	}
+
+	.accessible-sitemap__heading {
+		break-after: avoid;
+	}
+}

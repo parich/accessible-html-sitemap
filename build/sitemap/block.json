@@ -1,0 +1,91 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "accessible-html-sitemap/sitemap",
+  "version": "1.0.0",
+  "title": "Accessible HTML Sitemap",
+  "category": "widgets",
+  "icon": "list-view",
+  "description": "An accessible list of the site's pages, posts by category and other content, with jump links to each section.",
+  "keywords": [
+    "sitemap",
+    "site map",
+    "แผนผังเว็บไซต์"
+  ],
+  "attributes": {
+    "only": {
+      "type": "string",
+      "default": ""
+    },
+    "sort": {
+      "type": "string",
+      "default": ""
+    },
+    "order": {
+      "type": "string",
+      "default": ""
+    },
+    "displayTitle": {
+      "type": "boolean",
+      "default": true
+    },
+    "displayCategoryTitleWording": {
+      "type": "boolean",
+      "default": true
+    },
+    "headingLevel": {
+      "type": "number",
+      "default": 2
+    },
+    "showToc": {
+      "type": "boolean",
+      "default": true
+    },
+    "onlyPrivate": {
+      "type": "boolean",
+      "default": false
+    },
+    "sectionTitles": {
+      "type": "object",
+      "default": {}
+    },
+    "postsPerCategory": {
+      "type": "number"
+    },
+    "collapsible": {
+      "type": "string",
+      "enum": [
+        "",
+        "open",
+        "closed"
+      ],
+      "default": ""
+    }
+  },
+  "styles": [
+    {
+      "name": "tree",
+      "label": "Tree",
+      "isDefault": true
+    },
+    {
+      "name": "list",
+      "label": "List"
+    }
+  ],
+  "supports": {
+    "html": false,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    }
+  },
+  "textdomain": "accessible-html-sitemap",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css"
+}
