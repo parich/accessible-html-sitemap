@@ -76,6 +76,18 @@ npm run test:media
 - `admin/settings.css` (plain CSS, not built; in the zip through `"files"`) styles the settings screen only — enqueued by `Parich_Sitemap_Settings::enqueue()` for `settings_page_parich-accessible-sitemap`
 - The Buddhist Era setting also rewrites the years in the archive list's link texts (URLs keep the real year)
 
+## WordPress.org review rules — do not regress
+
+The first review (2026-09) came back although the local Plugin Check was clean. Keep these, tests cover the first three:
+
+- No `load_plugin_textdomain()`, no `Domain Path`, no custom `wp_set_script_translations()` path, no translation files in the zip (`languages` stays out of `"files"`) — test-01 and the zip check
+- Every `register_setting()` written out on its own with a literal `'type'` and `'sanitize_callback'` — no loops or variables (test-04 checks `get_registered_settings()`)
+- The block's markup is returned from `render_callback`, never echoed from a template; `IN (…)` queries go through `$wpdb->prepare()` with `%d` placeholders
+- The name stays "Parich Accessible Sitemap" (a distinctive term first; the old generic name was refused); the admin menu label may be short ("Accessible Sitemap"), the page title keeps the full name
+- No `[wp_sitemap_page]` alias: `wp_` is reserved for core and the tag belongs to WP Sitemap Page, so the review could ask for it again. Sites moving over rename the shortcode (same attributes); the settings are still imported (test-04)
+- Review e-mails and draft replies go in `docs/wporg-review/` (gitignored): reply in the same thread, briefly; a slug change must be requested in words
+- Before every upload: `npm test`, `npm run plugin-zip`, Plugin Check on the extracted zip (above), and a pre-submission check for the review-only rules (name, i18n, settings, readme, zip, repo hygiene) — see RELEASE.md step 4
+
 ## Thai order
 
 - Databases sort Thai by code point, so words starting with a leading vowel (เ แ โ ใ ไ) end up last. `Parich_Sitemap_Thai_Sort` re-sorts lists that contain Thai into dictionary order: PHP intl's `Collator` (`th_TH`) when available, otherwise `fallback_key()`, which gives the same order (checked in tests/php/test-09-thai-order.php). Lists without Thai keep the database order, so parity with WP Sitemap Page is unchanged

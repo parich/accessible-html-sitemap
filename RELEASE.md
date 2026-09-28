@@ -58,7 +58,16 @@ npm run plugin-zip
 wp plugin check <โฟลเดอร์ที่แตก zip>/parich-accessible-sitemap --slug=parich-accessible-sitemap --include-experimental
 ```
 
-ต้องได้ `Success: Checks complete. No errors found.` — จดค่า SHA-256 ของ zip ไว้ ไฟล์ที่แนบใน GitHub Release และที่ส่ง WordPress.org ต้องเป็นไฟล์เดียวกัน:
+ต้องได้ `Success: Checks complete. No errors found.`
+
+> **Plugin Check ผ่านยังไม่พอ** — รีวิวรอบแรก (2026-09) โดนตีกลับทั้งที่ Plugin Check ผ่าน ตรวจเรื่องที่ฝั่งรีวิวดูเพิ่มด้วย
+> (ถ้ามี skill `wporg-plugin-submission`: `node ~/.claude/skills/wporg-plugin-submission/scripts/precheck.mjs . --zip parich-accessible-sitemap.zip`):
+> - ไม่มี `load_plugin_textdomain()` / `Domain Path` และไม่มีไฟล์แปลใน zip
+> - `register_setting()` ทุกตัวมี `'type'` และ `'sanitize_callback'` เขียนตรง ๆ (ไม่ผ่านตัวแปร/ลูป)
+> - `Tested up to` = WordPress รุ่นล่าสุดที่ทดสอบจริง, `Stable tag` = Version
+> - ชื่อยังขึ้นต้นด้วยคำเฉพาะตัว; repo ไม่มี path ในเครื่องหรืออีเมลส่วนตัวใน commit
+
+จดค่า SHA-256 ของ zip ไว้ ไฟล์ที่แนบใน GitHub Release และที่ส่ง WordPress.org ต้องเป็นไฟล์เดียวกัน:
 
 ```bash
 sha256sum parich-accessible-sitemap.zip

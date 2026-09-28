@@ -1,7 +1,7 @@
 <?php
 /**
  * Phase 4: settings (sanitizing, admin page), migration from WP Sitemap Page,
- * the [wp_sitemap_page] alias, and uninstall.
+ * no [wp_sitemap_page] alias (moving from that plugin means renaming the shortcode), and uninstall.
  *
  * @package Parich_Accessible_Sitemap
  */
@@ -133,24 +133,14 @@ $was = get_option('parich_sitemap_buddhist_era');
 update_option('parich_sitemap_buddhist_era', !$was);
 pas_test_assert('the stored setting can now be switched off and on', (bool) get_option('parich_sitemap_buddhist_era') === !$was);
 
-pas_test_section('[wp_sitemap_page] alias');
-$owner = $GLOBALS['shortcode_tags']['wp_sitemap_page'] ?? null;
-if (function_exists('wsp_wp_sitemap_page_main_func') && is_plugin_active('wp-sitemap-page/wp-sitemap-page.php')) {
-	pas_test_assert('while WP Sitemap Page is active the tag stays its own', $owner === 'wsp_wp_sitemap_page_main_func', (string) $owner);
-} else {
-	pas_test_assert('WP Sitemap Page inactive: this plugin handles the tag', $owner === 'parich_sitemap_shortcode', (string) $owner);
-}
-remove_shortcode('wp_sitemap_page'); // Same as WP Sitemap Page being switched off.
-parich_sitemap_register_legacy_shortcode();
-pas_test_assert('after it is switched off, the tag is handled here', ($GLOBALS['shortcode_tags']['wp_sitemap_page'] ?? null) === 'parich_sitemap_shortcode');
-pas_test_apply_settings();
-$same_ids = function ($html) {
-	return preg_replace('/parich-sitemap-\d+/', 'parich-sitemap-N', $html);
-};
+pas_test_section('No [wp_sitemap_page] alias');
+// wp_ is reserved for WordPress core and the tag belongs to WP Sitemap Page: this plugin never registers it.
 pas_test_assert(
-	'[wp_sitemap_page only="page"] renders like [parich_sitemap only="page"]',
-	$same_ids(do_shortcode('[wp_sitemap_page only="page"]')) === $same_ids(do_shortcode('[parich_sitemap only="page"]'))
+	'[wp_sitemap_page] is not registered by this plugin',
+	!function_exists('parich_sitemap_register_legacy_shortcode') && ($GLOBALS['shortcode_tags']['wp_sitemap_page'] ?? null) !== 'parich_sitemap_shortcode',
+	(string) ($GLOBALS['shortcode_tags']['wp_sitemap_page'] ?? '')
 );
+pas_test_apply_settings();
 
 pas_test_section('Settings page');
 $GLOBALS['submenu'] = array();
@@ -205,7 +195,7 @@ ob_start();
 Parich_Sitemap_Settings::render_page();
 $usage = ob_get_clean();
 unset($_GET['tab']);
-pas_test_assert('"How to use" documents heading_level, toc and the alias', strpos($usage, 'heading_level') !== false && strpos($usage, 'toc=') !== false && strpos($usage, '[wp_sitemap_page]') !== false);
+pas_test_assert('"How to use" documents heading_level, toc and how to move from [wp_sitemap_page]', strpos($usage, 'heading_level') !== false && strpos($usage, 'toc=') !== false && strpos($usage, 'Replace [wp_sitemap_page] shortcodes with [parich_sitemap]') !== false);
 pas_test_assert('"How to use" tab is marked current', strpos($usage, 'nav-tab-active" aria-current="page">How to use') !== false);
 pas_test_assert(
 	'"How to use" ends with a support box: decorative heart, Donate button (Stripe only)',

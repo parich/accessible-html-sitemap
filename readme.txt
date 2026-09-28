@@ -50,7 +50,7 @@ On a test site with 5,000 posts, building the sitemap took under a second and se
 
 = Coming from WP Sitemap Page =
 
-This plugin started as a fork of [WP Sitemap Page](https://wordpress.org/plugins/wp-sitemap-page/) 1.9.6 by Tony Archambeau (GPLv2 or later). Its settings are copied the first time this plugin runs, and existing `[wp_sitemap_page]` shortcodes keep working after you deactivate it.
+This plugin started as a fork of [WP Sitemap Page](https://wordpress.org/plugins/wp-sitemap-page/) 1.9.6 by Tony Archambeau (GPLv2 or later). Its settings are copied the first time this plugin runs. Replace `[wp_sitemap_page]` shortcodes with `[parich_sitemap]`; they take the same attributes.
 
 = Source code =
 
@@ -125,7 +125,7 @@ The plugin is free, with every feature for everyone. If it is useful to you, you
 * Thai translation, Buddhist Era years and Thai dictionary order.
 * Cache, lightweight loading and an optional limit of posts per category for large sites.
 * Styles for Windows contrast themes, "increase contrast" and print.
-* Settings copied from WP Sitemap Page; `[wp_sitemap_page]` keeps working.
+* Settings copied from WP Sitemap Page; its shortcode attributes work unchanged in `[parich_sitemap]`.
 
 == Upgrade Notice ==
 

@@ -450,7 +450,7 @@ class Parich_Sitemap_Settings
 		<?php endif; ?>
 
 		<h2><?php esc_html_e('Coming from WP Sitemap Page', 'parich-accessible-sitemap'); ?></h2>
-		<p><?php esc_html_e('Existing [wp_sitemap_page] shortcodes keep working once WP Sitemap Page is deactivated: they are shown by this plugin with the same attributes. Its settings are copied the first time this plugin runs.', 'parich-accessible-sitemap'); ?></p>
+		<p><?php esc_html_e('Replace [wp_sitemap_page] shortcodes with [parich_sitemap]; they take the same attributes. The settings of WP Sitemap Page are copied the first time this plugin runs.', 'parich-accessible-sitemap'); ?></p>
 
 		<div class="parich-sitemap-support">
 			<span class="parich-sitemap-support__icon dashicons dashicons-heart" aria-hidden="true"></span>

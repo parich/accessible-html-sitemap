@@ -7,7 +7,7 @@ An accessible (WCAG 2.1 AA) HTML sitemap for WordPress: a block and a shortcode 
 - **Accessible:** a labelled navigation landmark, real headings (level 2–6), nested lists, a table of contents with "Back to contents" links, `aria-current`, visible focus, reflow at 320px, Windows contrast themes and print.
 - **Thai:** Thai translation (as a language pack from translate.wordpress.org), Buddhist Era years (พ.ศ.), and Thai titles in dictionary order (words starting with เ แ โ ใ ไ sorted by their consonant).
 - **Fast on large sites:** cached and rebuilt when content changes, posts loaded in batches without their content, optional limit of posts per category.
-- **Coming from WP Sitemap Page:** settings are copied on first run and `[wp_sitemap_page]` shortcodes keep working.
+- **Coming from WP Sitemap Page:** settings are copied on first run; replace `[wp_sitemap_page]` with `[parich_sitemap]` (same attributes).
 
 The user documentation — every shortcode option, FAQ and filters — is in [readme.txt](readme.txt), the same text as on WordPress.org.
 

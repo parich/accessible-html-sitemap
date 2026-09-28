@@ -173,16 +173,3 @@ function parich_sitemap_shortcode($atts)
 	return Parich_Sitemap_Renderer::render($atts, 'class="' . esc_attr($class) . '"');
 }
 add_shortcode('parich_sitemap', 'parich_sitemap_shortcode');
-
-/**
- * Keeps existing [wp_sitemap_page] shortcodes working once WP Sitemap Page is
- * deactivated. That plugin registers the tag while loading, so while it is active
- * the tag already exists here and is left alone.
- */
-function parich_sitemap_register_legacy_shortcode()
-{
-	if (!shortcode_exists('wp_sitemap_page')) {
-		add_shortcode('wp_sitemap_page', 'parich_sitemap_shortcode');
-	}
-}
-add_action('init', 'parich_sitemap_register_legacy_shortcode', 20);
