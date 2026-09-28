@@ -163,7 +163,9 @@ class Parich_Sitemap_Settings
 	{
 		return add_options_page(
 			__('Parich Accessible Sitemap', 'parich-accessible-sitemap'),
-			__('Parich Accessible Sitemap', 'parich-accessible-sitemap'),
+			// Short enough for one line in the admin menu; the page title keeps the full name.
+			/* translators: admin menu label, a short form of the plugin name */
+			__('Accessible Sitemap', 'parich-accessible-sitemap'),
 			'manage_options',
 			self::PAGE,
 			array(__CLASS__, 'render_page')

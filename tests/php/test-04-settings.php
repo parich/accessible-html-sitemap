@@ -163,6 +163,14 @@ pas_test_assert('an author gets no page content', ob_get_clean() === '');
 
 wp_set_current_user($f['admin']);
 pas_test_assert('an administrator gets the page', is_string(Parich_Sitemap_Settings::add_page()));
+$entry = current(array_filter($GLOBALS['submenu']['options-general.php'] ?? array(), function ($item) {
+	return 'parich-accessible-sitemap' === ($item[2] ?? '');
+}));
+pas_test_assert(
+	'menu label "Accessible Sitemap" (one line), page title "Parich Accessible Sitemap"',
+	$entry && 'Accessible Sitemap' === $entry[0] && 'Parich Accessible Sitemap' === $entry[3],
+	wp_json_encode($entry)
+);
 ob_start();
 Parich_Sitemap_Settings::render_page();
 $page = ob_get_clean();
