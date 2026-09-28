@@ -1,4 +1,4 @@
-=== Accessible HTML Sitemap ===
+=== Parich Accessible Sitemap ===
 Contributors: parich
 Donate link: https://buy.stripe.com/3cIaEW9699pf3dyeAfaMU00
 Tags: sitemap, html sitemap, accessibility, wcag, thai
@@ -13,7 +13,7 @@ An accessible (WCAG 2.1 AA) HTML sitemap block and shortcode: tree view, collaps
 
 == Description ==
 
-Accessible HTML Sitemap adds a sitemap page that people can read: your pages, your posts by category, other content types and taxonomies, archives and authors. Add the **Accessible HTML Sitemap** block to any page, or use the `[accessible_sitemap]` shortcode.
+Parich Accessible Sitemap adds a sitemap page that people can read: your pages, your posts by category, other content types and taxonomies, archives and authors. Add the **Parich Accessible Sitemap** block to any page, or use the `[parich_sitemap]` shortcode.
 
 = Built for accessibility (WCAG 2.1 AA) =
 
@@ -29,7 +29,7 @@ Colors and fonts come from your theme, so text contrast is the theme's to get ri
 
 = Thai language support =
 
-* Complete Thai translation: the sitemap, the settings page and the block editor.
+* Thai translation of the sitemap, the settings page and the block editor, delivered as a language pack from translate.wordpress.org.
 * Years in the Buddhist Era (พ.ศ.) on Thai sites, in any date format.
 * Thai titles and names in dictionary order. Databases sort words that start with เ แ โ ใ ไ after all others; this plugin sorts them by their first consonant, as a Thai dictionary does (กา เกม ไก่ ขนม …).
 * Line spacing that leaves room for Thai vowels and tone marks.
@@ -54,13 +54,13 @@ This plugin started as a fork of [WP Sitemap Page](https://wordpress.org/plugins
 
 = Source code =
 
-The complete source, including the block editor code in `src/`, ships with the plugin and is on GitHub: [github.com/parich/accessible-html-sitemap](https://github.com/parich/accessible-html-sitemap). Build it with `npm install` and `npm run build`.
+The complete source, including the block editor code in `src/`, ships with the plugin and is on GitHub: [github.com/parich/parich-accessible-sitemap](https://github.com/parich/parich-accessible-sitemap). Build it with `npm install` and `npm run build`.
 
 == Installation ==
 
-1. In your dashboard go to **Plugins → Add New Plugin**, search for "Accessible HTML Sitemap", then install and activate it. You can also upload the ZIP file under **Plugins → Add New Plugin → Upload Plugin**.
-2. Edit the page that should show the sitemap and add the **Accessible HTML Sitemap** block, or the `[accessible_sitemap]` shortcode.
-3. Optional: choose what to hide and how posts are shown under **Settings → Accessible HTML Sitemap**. The **How to use** tab lists every shortcode option.
+1. In your dashboard go to **Plugins → Add New Plugin**, search for "Parich Accessible Sitemap", then install and activate it. You can also upload the ZIP file under **Plugins → Add New Plugin → Upload Plugin**.
+2. Edit the page that should show the sitemap and add the **Parich Accessible Sitemap** block, or the `[parich_sitemap]` shortcode.
+3. Optional: choose what to hide and how posts are shown under **Settings → Parich Accessible Sitemap**. The **How to use** tab lists every shortcode option.
 
 == Frequently Asked Questions ==
 
@@ -71,7 +71,7 @@ No. WordPress already publishes one for search engines at `/wp-sitemap.xml`. Thi
 = Which shortcode options are there? =
 
 * `only` — one kind of content: `page`, `post`, `category`, `tag`, `archive`, `author`, or the name of a public content type or taxonomy.
-* `sort` and `order` — for example `[accessible_sitemap only="page" sort="menu_order"]` or `[accessible_sitemap only="post" sort="post_title" order="ASC"]`.
+* `sort` and `order` — for example `[parich_sitemap only="page" sort="menu_order"]` or `[parich_sitemap only="post" sort="post_title" order="ASC"]`.
 * `heading_level` — 2 to 6 (default 2).
 * `toc="false"` — no table of contents; `display_title="false"` — no section headings.
 * `display_category_title_wording="false"` — no "Category:" before category names.
@@ -93,15 +93,15 @@ No. It makes the sitemap's markup accessible. Colors, contrast and the rest of t
 
 = Can I turn off the Thai dictionary order? =
 
-Yes: `add_filter( 'accessible_sitemap_thai_sort', '__return_false' );`. Lists without any Thai are never re-sorted. The PHP intl extension is used when the server has it; otherwise a built-in method gives the same order.
+Yes: `add_filter( 'parich_sitemap_thai_sort', '__return_false' );`. Lists without any Thai are never re-sorted. The PHP intl extension is used when the server has it; otherwise a built-in method gives the same order.
 
 = Which filters are there for developers? =
 
-* `accessible_sitemap_use_cache` — return false to build the sitemap on every view.
-* `accessible_sitemap_cache_ttl` — how long a cached sitemap is kept, in seconds (default one day).
-* `accessible_sitemap_thai_sort` — return false to keep the database order.
-* `accessible_sitemap_collator` — a `Collator` to sort Thai with, or null for the built-in method.
-* `shortcode_atts_accessible_sitemap` — WordPress's standard filter for the shortcode's attributes.
+* `parich_sitemap_use_cache` — return false to build the sitemap on every view.
+* `parich_sitemap_cache_ttl` — how long a cached sitemap is kept, in seconds (default one day).
+* `parich_sitemap_thai_sort` — return false to keep the database order.
+* `parich_sitemap_collator` — a `Collator` to sort Thai with, or null for the built-in method.
+* `shortcode_atts_parich_sitemap` — WordPress's standard filter for the shortcode's attributes.
 
 = How can I support the plugin? =
 

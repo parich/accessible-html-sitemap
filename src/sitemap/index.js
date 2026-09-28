@@ -1,5 +1,5 @@
 /**
- * Registers the accessible-html-sitemap/sitemap block. The front end is rendered on the server (render.php).
+ * Registers the parich-accessible-sitemap/sitemap block. The front end is rendered on the server (render.php).
  */
 import { registerBlockType } from '@wordpress/blocks';
 

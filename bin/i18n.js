@@ -1,6 +1,6 @@
 /**
  * Rebuilds the translation files with WP-CLI:
- *   languages/accessible-html-sitemap.pot   ← PHP, block.json and the built editor script
+ *   languages/parich-accessible-sitemap.pot   ← PHP, block.json and the built editor script
  *   languages/*.po              ← updated with new strings (translate them, then run again)
  *   languages/*.mo              ← PHP translations
  *   languages/*-<md5>.json      ← editor script translations
@@ -81,10 +81,10 @@ wp(
 	'i18n',
 	'make-pot',
 	'.',
-	'languages/accessible-html-sitemap.pot',
-	'--domain=accessible-html-sitemap',
+	'languages/parich-accessible-sitemap.pot',
+	'--domain=parich-accessible-sitemap',
 	'--exclude=src,node_modules,tests,docs,bin,vendor',
-	'--package-name=Accessible HTML Sitemap'
+	'--package-name=Parich Accessible Sitemap'
 );
 
 const poFiles = fs
@@ -94,7 +94,7 @@ if ( poFiles.length ) {
 	wp(
 		'i18n',
 		'update-po',
-		'languages/accessible-html-sitemap.pot',
+		'languages/parich-accessible-sitemap.pot',
 		'languages/'
 	);
 	wp( 'i18n', 'make-mo', 'languages/' );

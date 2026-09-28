@@ -11,9 +11,9 @@
 
 ## 1. แก้ไข Code และ Changelog
 
-- แก้ใน `src/`, `includes/`, `admin/` หรือ `accessible-html-sitemap.php`
+- แก้ใน `src/`, `includes/`, `admin/` หรือ `parich-accessible-sitemap.php`
 - เพิ่มรายการใน `== Changelog ==` ของ `readme.txt` (และ `== Upgrade Notice ==` ถ้ามีเรื่องที่ผู้ใช้ต้องรู้ก่อนอัปเดต)
-- ข้อความใหม่ต้องแปลไทย: `npm run build && npm run i18n` จะบอกข้อความที่ยังไม่ได้แปลใน `languages/accessible-html-sitemap-th.po`
+- ข้อความใหม่ต้องแปลไทย: `npm run build && npm run i18n` จะบอกข้อความที่ยังไม่ได้แปลใน `languages/parich-accessible-sitemap-th.po` (ไฟล์นี้ไม่อยู่ใน zip ใช้สำหรับ test และนำเข้า translate.wordpress.org — หลังออกเวอร์ชันใหม่ ให้อัปโหลดคำแปลใหม่ที่ <https://translate.wordpress.org/projects/wp-plugins/parich-accessible-sitemap/>)
 
 ---
 
@@ -21,7 +21,7 @@
 
 | ไฟล์ | บรรทัด |
 |---|---|
-| `accessible-html-sitemap.php` | ` * Version:           1.0.1` |
+| `parich-accessible-sitemap.php` | ` * Version:           1.0.1` |
 | `readme.txt` | `Stable tag: 1.0.1` |
 | `package.json` | `"version": "1.0.1"` |
 
@@ -55,13 +55,13 @@ npm run plugin-zip
 แตก zip ไว้นอกเว็บ แล้วตรวจสิ่งที่จะส่งออกไปจริง (Plugin Check ติดตั้งอยู่บนเว็บ local):
 
 ```bash
-wp plugin check <โฟลเดอร์ที่แตก zip>/accessible-html-sitemap --slug=accessible-html-sitemap --include-experimental
+wp plugin check <โฟลเดอร์ที่แตก zip>/parich-accessible-sitemap --slug=parich-accessible-sitemap --include-experimental
 ```
 
 ต้องได้ `Success: Checks complete. No errors found.` — จดค่า SHA-256 ของ zip ไว้ ไฟล์ที่แนบใน GitHub Release และที่ส่ง WordPress.org ต้องเป็นไฟล์เดียวกัน:
 
 ```bash
-sha256sum accessible-html-sitemap.zip
+sha256sum parich-accessible-sitemap.zip
 ```
 
 ---
@@ -79,7 +79,7 @@ git push origin main
 ## 6. สร้าง GitHub Release
 
 ```bash
-gh release create v1.0.1 accessible-html-sitemap.zip \
+gh release create v1.0.1 parich-accessible-sitemap.zip \
   --title "1.0.1" \
   --notes "## Changelog
 - ..."
@@ -94,11 +94,11 @@ gh release create v1.0.1 accessible-html-sitemap.zip \
 ใช้ username `parich` (ตัวพิมพ์ต้องตรง) กับ **SVN password** ที่ตั้งไว้ใน <https://profiles.wordpress.org/me/profile/edit/group/3/?screen=svn-password> (ไม่ใช่รหัสผ่าน login)
 
 ```bash
-svn checkout https://plugins.svn.wordpress.org/accessible-html-sitemap svn-ahs
+svn checkout https://plugins.svn.wordpress.org/parich-accessible-sitemap svn-ahs
 
-# trunk = ไฟล์ข้างใน zip (ไม่ใส่ตัว zip และไม่ซ้อนโฟลเดอร์ accessible-html-sitemap/)
-rm -rf svn-ahs/trunk/* && unzip -q accessible-html-sitemap.zip -d zip-tmp
-cp -R zip-tmp/accessible-html-sitemap/. svn-ahs/trunk/ && rm -rf zip-tmp
+# trunk = ไฟล์ข้างใน zip (ไม่ใส่ตัว zip และไม่ซ้อนโฟลเดอร์ parich-accessible-sitemap/)
+rm -rf svn-ahs/trunk/* && unzip -q parich-accessible-sitemap.zip -d zip-tmp
+cp -R zip-tmp/parich-accessible-sitemap/. svn-ahs/trunk/ && rm -rf zip-tmp
 
 # assets = ไอคอน แบนเนอร์ และภาพหน้าจอ (ไม่อยู่ใน zip)
 cp .wordpress-org/* svn-ahs/assets/
@@ -117,6 +117,6 @@ svn commit -m "Release 1.0.1" --username parich
 
 ## 8. ตรวจสอบ
 
-- หน้าปลั๊กอิน <https://wordpress.org/plugins/accessible-html-sitemap/> แสดงเวอร์ชันใหม่ (อาจใช้เวลาหลายนาทีถึง 6 ชั่วโมง)
+- หน้าปลั๊กอิน <https://wordpress.org/plugins/parich-accessible-sitemap/> แสดงเวอร์ชันใหม่ (อาจใช้เวลาหลายนาทีถึง 6 ชั่วโมง)
 - เว็บที่ติดตั้งไว้เห็นอัปเดตใน Dashboard → Updates (ตรวจทันทีได้ที่ `/wp-admin/update-core.php?force-check=1`)
 - GitHub: `gh release view v1.0.1` มีไฟล์ zip แนบ

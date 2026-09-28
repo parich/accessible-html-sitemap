@@ -8,14 +8,14 @@
  * so "เกม" and "ไก่" belong with the ก words. Lists with at least one Thai name
  * are sorted again here; any other list keeps the order the database gave it.
  *
- * @package Accessible_HTML_Sitemap
+ * @package Parich_Accessible_Sitemap
  */
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class Accessible_Sitemap_Thai_Sort
+class Parich_Sitemap_Thai_Sort
 {
 	/**
 	 * @param array         $items
@@ -24,7 +24,7 @@ class Accessible_Sitemap_Thai_Sort
 	 * @param callable|null $group      function ($item): int, compared before the name
 	 *                                  (ascending), e.g. a page's menu_order.
 	 * @return array The items as a list: in Thai order, or in the order given when no
-	 *               name contains Thai or the accessible_sitemap_thai_sort filter says no.
+	 *               name contains Thai or the parich_sitemap_thai_sort filter says no.
 	 */
 	public static function sort(array $items, callable $name, $descending = false, $group = null)
 	{
@@ -38,7 +38,7 @@ class Accessible_Sitemap_Thai_Sort
 		 *
 		 * @param bool $sort Default true.
 		 */
-		if (!self::has_thai($names) || !apply_filters('accessible_sitemap_thai_sort', true)) {
+		if (!self::has_thai($names) || !apply_filters('parich_sitemap_thai_sort', true)) {
 			return $items;
 		}
 
@@ -98,7 +98,7 @@ class Accessible_Sitemap_Thai_Sort
 		 *
 		 * @param Collator|null $collator
 		 */
-		$collator = apply_filters('accessible_sitemap_collator', $collator);
+		$collator = apply_filters('parich_sitemap_collator', $collator);
 
 		if ($collator instanceof Collator) {
 			$keys = array();

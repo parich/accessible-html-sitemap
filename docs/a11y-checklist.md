@@ -2,7 +2,7 @@
 
 `npm run test:a11y` (axe-core) ตรวจได้เฉพาะสิ่งที่อ่านจาก HTML ได้ ส่วนข้างล่างนี้ต้องทดสอบในเบราว์เซอร์จริงบน theme ที่ใช้งาน
 
-**วิธีเตรียม:** สร้างหน้าทดสอบที่มี `[accessible_sitemap]` (หรือ block Accessible HTML Sitemap) บนเว็บที่มีเนื้อหาจริง แล้วเปิดด้วย Chrome หรือ Firefox บน Windows
+**วิธีเตรียม:** สร้างหน้าทดสอบที่มี `[parich_sitemap]` (หรือ block Parich Accessible Sitemap) บนเว็บที่มีเนื้อหาจริง แล้วเปิดด้วย Chrome หรือ Firefox บน Windows
 
 | # | เกณฑ์ | วิธีทดสอบ | ผลที่ต้องได้ | ผล |
 |---|---|---|---|---|

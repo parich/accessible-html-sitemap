@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Accessible HTML Sitemap 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/accessible-html-sitemap\n"
+"Project-Id-Version: Parich Accessible Sitemap 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/parich-accessible-sitemap\n"
 "Last-Translator: Parich Suriya\n"
 "Language-Team: Thai\n"
 "MIME-Version: 1.0\n"
@@ -11,297 +11,297 @@ msgstr ""
 "PO-Revision-Date: 2026-09-28 06:17+0000\n"
 "Language: th\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: accessible-html-sitemap\n"
+"X-Domain: parich-accessible-sitemap\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #. Author of the plugin
-#: accessible-html-sitemap.php
+#: parich-accessible-sitemap.php
 msgid "Mr.Parich Suriya"
 msgstr "Mr.Parich Suriya"
 
 #. Author URI of the plugin
-#: accessible-html-sitemap.php
+#: parich-accessible-sitemap.php
 msgid "https://github.com/parich"
 msgstr "https://github.com/parich"
 
-#: includes/class-accessible-sitemap-renderer.php:368
+#: includes/class-parich-sitemap-renderer.php:368
 msgid "Sitemap"
 msgstr "แผนผังเว็บไซต์"
 
 #. translators: %s: section title, e.g. "Pages"
-#: includes/class-accessible-sitemap-renderer.php:370
+#: includes/class-parich-sitemap-renderer.php:370
 #, php-format
 msgid "Sitemap: %s"
 msgstr "แผนผังเว็บไซต์: %s"
 
-#: includes/class-accessible-sitemap-renderer.php:376
+#: includes/class-parich-sitemap-renderer.php:376
 msgid "On this page:"
 msgstr "ในหน้านี้:"
 
-#: includes/class-accessible-sitemap-renderer.php:538
-#: includes/class-accessible-sitemap-settings.php:149
+#: includes/class-parich-sitemap-renderer.php:538
+#: includes/class-parich-sitemap-settings.php:186
 #: build/sitemap/index.js:1
 msgid "Pages"
 msgstr "หน้าเว็บไซต์"
 
-#: includes/class-accessible-sitemap-renderer.php:624
-#: includes/class-accessible-sitemap-settings.php:150
+#: includes/class-parich-sitemap-renderer.php:624
+#: includes/class-parich-sitemap-settings.php:187
 #: build/sitemap/index.js:1
 msgid "Posts by category"
 msgstr "เรื่องตามหมวดหมู่"
 
 #. translators: %s: category name, linked
 #. translators: %s: category name
-#: includes/class-accessible-sitemap-renderer.php:642
-#: includes/class-accessible-sitemap-renderer.php:699
+#: includes/class-parich-sitemap-renderer.php:642
+#: includes/class-parich-sitemap-renderer.php:699
 #, php-format
 msgid "Category: %s"
 msgstr "หมวดหมู่: %s"
 
 #. translators: %d: post ID (same wording as the WordPress page list)
-#: includes/class-accessible-sitemap-renderer.php:900
+#: includes/class-parich-sitemap-renderer.php:900
 #, php-format
 msgid "#%d (no title)"
 msgstr "#%d (ไม่มีชื่อเรื่อง)"
 
-#: includes/class-accessible-sitemap-renderer.php:916
+#: includes/class-parich-sitemap-renderer.php:916
 #: build/sitemap/index.js:1
 msgid "Categories"
 msgstr "หมวดหมู่"
 
-#: includes/class-accessible-sitemap-renderer.php:925
+#: includes/class-parich-sitemap-renderer.php:925
 #: build/sitemap/index.js:1
 msgid "Tags"
 msgstr "ป้ายกำกับ"
 
-#: includes/class-accessible-sitemap-renderer.php:939
-#: includes/class-accessible-sitemap-settings.php:151
+#: includes/class-parich-sitemap-renderer.php:939
+#: includes/class-parich-sitemap-settings.php:188
 #: build/sitemap/index.js:1
 msgid "Archives"
 msgstr "คลังเรื่อง"
 
-#: includes/class-accessible-sitemap-renderer.php:948
-#: includes/class-accessible-sitemap-settings.php:152
+#: includes/class-parich-sitemap-renderer.php:948
+#: includes/class-parich-sitemap-settings.php:189
 #: build/sitemap/index.js:1
 msgid "Authors"
 msgstr "ผู้เขียน"
 
-#: includes/class-accessible-sitemap-settings.php:141
-#: includes/class-accessible-sitemap-settings.php:165
+#: includes/class-parich-sitemap-settings.php:178
+#: includes/class-parich-sitemap-settings.php:202
 msgid "Settings"
 msgstr "ตั้งค่า"
 
-#: includes/class-accessible-sitemap-settings.php:166
+#: includes/class-parich-sitemap-settings.php:203
 msgid "How to use"
 msgstr "วิธีใช้งาน"
 
-#: includes/class-accessible-sitemap-settings.php:196
+#: includes/class-parich-sitemap-settings.php:233
 msgid "post title"
 msgstr "ชื่อเรื่อง"
 
-#: includes/class-accessible-sitemap-settings.php:197
+#: includes/class-parich-sitemap-settings.php:234
 msgid "post URL"
 msgstr "ลิงก์ของเรื่อง"
 
-#: includes/class-accessible-sitemap-settings.php:198
+#: includes/class-parich-sitemap-settings.php:235
 msgid "date in the site's date format (Settings → General), e.g. 27 September 2026"
 msgstr "วันที่ตามรูปแบบวันที่ของเว็บ (ตั้งค่า → ทั่วไป) เช่น 27 กันยายน 2569"
 
-#: includes/class-accessible-sitemap-settings.php:199
+#: includes/class-parich-sitemap-settings.php:236
 msgid "year, e.g. 2026"
 msgstr "ปี เช่น 2569"
 
-#: includes/class-accessible-sitemap-settings.php:200
+#: includes/class-parich-sitemap-settings.php:237
 msgid "month, e.g. 09"
 msgstr "เดือน เช่น 09"
 
-#: includes/class-accessible-sitemap-settings.php:201
+#: includes/class-parich-sitemap-settings.php:238
 msgid "day of the month, e.g. 27"
 msgstr "วันที่ของเดือน เช่น 27"
 
-#: includes/class-accessible-sitemap-settings.php:202
+#: includes/class-parich-sitemap-settings.php:239
 msgid "hour, e.g. 15"
 msgstr "ชั่วโมง เช่น 15"
 
-#: includes/class-accessible-sitemap-settings.php:203
+#: includes/class-parich-sitemap-settings.php:240
 msgid "minute, e.g. 43"
 msgstr "นาที เช่น 43"
 
-#: includes/class-accessible-sitemap-settings.php:204
+#: includes/class-parich-sitemap-settings.php:241
 msgid "second, e.g. 33"
 msgstr "วินาที เช่น 33"
 
-#: includes/class-accessible-sitemap-settings.php:205
+#: includes/class-parich-sitemap-settings.php:242
 msgid "post ID, e.g. 423"
 msgstr "รหัสเรื่อง (ID) เช่น 423"
 
-#: includes/class-accessible-sitemap-settings.php:206
+#: includes/class-parich-sitemap-settings.php:243
 msgid "name of the first category"
 msgstr "ชื่อหมวดหมู่แรกของเรื่อง"
 
-#: includes/class-accessible-sitemap-settings.php:212
+#: includes/class-parich-sitemap-settings.php:249
 msgid "Posts"
 msgstr "เรื่อง"
 
-#: includes/class-accessible-sitemap-settings.php:215
+#: includes/class-parich-sitemap-settings.php:252
 msgid "How to display each post"
 msgstr "รูปแบบการแสดงแต่ละเรื่อง"
 
-#: includes/class-accessible-sitemap-settings.php:219
+#: includes/class-parich-sitemap-settings.php:256
 msgid "Placeholders:"
 msgstr "ตัวแทนข้อมูลที่ใช้ได้:"
 
 #. translators: %s: default template
-#: includes/class-accessible-sitemap-settings.php:228
+#: includes/class-parich-sitemap-settings.php:265
 #, php-format
 msgid "Allowed HTML: a, strong, em, b, i, span, br. Default: %s"
 msgstr "HTML ที่ใช้ได้: a, strong, em, b, i, span, br ค่าเริ่มต้น: %s"
 
-#: includes/class-accessible-sitemap-settings.php:235
-#: includes/class-accessible-sitemap-settings.php:238
+#: includes/class-parich-sitemap-settings.php:272
+#: includes/class-parich-sitemap-settings.php:275
 msgid "Year"
 msgstr "ปี"
 
-#: includes/class-accessible-sitemap-settings.php:241
+#: includes/class-parich-sitemap-settings.php:278
 msgid "Show years in the Buddhist Era (B.E.)"
 msgstr "แสดงปีเป็นพุทธศักราช (พ.ศ.)"
 
-#: includes/class-accessible-sitemap-settings.php:255
-#: includes/class-accessible-sitemap-settings.php:258
+#: includes/class-parich-sitemap-settings.php:292
+#: includes/class-parich-sitemap-settings.php:295
 msgid "Posts in several categories"
 msgstr "เรื่องที่อยู่หลายหมวดหมู่"
 
-#: includes/class-accessible-sitemap-settings.php:261
+#: includes/class-parich-sitemap-settings.php:298
 msgid "List a post under every category it belongs to"
 msgstr "แสดงเรื่องในทุกหมวดหมู่ที่เรื่องนั้นอยู่"
 
-#: includes/class-accessible-sitemap-settings.php:263
+#: includes/class-parich-sitemap-settings.php:300
 msgid "Otherwise a post is listed once, under its first category."
 msgstr "ถ้าไม่เลือก จะแสดงเรื่องเพียงครั้งเดียวในหมวดหมู่แรก"
 
-#: includes/class-accessible-sitemap-settings.php:269
+#: includes/class-parich-sitemap-settings.php:306
 msgid "Exclude from the full sitemap"
 msgstr "ซ่อนจากแผนผังเว็บไซต์แบบเต็ม"
 
-#: includes/class-accessible-sitemap-settings.php:270
+#: includes/class-parich-sitemap-settings.php:307
 msgid "These settings apply to a sitemap without the \"only\" attribute. A sitemap with only=\"…\" always shows that content."
 msgstr "การตั้งค่านี้ใช้กับแผนผังที่ไม่ได้ระบุ \"only\" ส่วนแผนผังที่ระบุ only=\"…\" จะแสดงเนื้อหานั้นเสมอ"
 
-#: includes/class-accessible-sitemap-settings.php:273
-#: includes/class-accessible-sitemap-settings.php:275
+#: includes/class-parich-sitemap-settings.php:310
+#: includes/class-parich-sitemap-settings.php:312
 msgid "Hide sections"
 msgstr "ซ่อนส่วน"
 
-#: includes/class-accessible-sitemap-settings.php:280
-#: includes/class-accessible-sitemap-settings.php:282
+#: includes/class-parich-sitemap-settings.php:317
+#: includes/class-parich-sitemap-settings.php:319
 msgid "Hide content types"
 msgstr "ซ่อนชนิดเนื้อหา"
 
-#: includes/class-accessible-sitemap-settings.php:288
-#: includes/class-accessible-sitemap-settings.php:290
+#: includes/class-parich-sitemap-settings.php:325
+#: includes/class-parich-sitemap-settings.php:327
 msgid "Hide taxonomies"
 msgstr "ซ่อนการจัดกลุ่มเนื้อหา (taxonomy)"
 
-#: includes/class-accessible-sitemap-settings.php:295
+#: includes/class-parich-sitemap-settings.php:332
 msgid "Hide pages and posts"
 msgstr "ซ่อนหน้าและเรื่อง"
 
-#: includes/class-accessible-sitemap-settings.php:298
+#: includes/class-parich-sitemap-settings.php:335
 msgid "IDs separated by commas, e.g. 12,45,78."
 msgstr "ใส่รหัส (ID) คั่นด้วยจุลภาค เช่น 12,45,78"
 
-#: includes/class-accessible-sitemap-settings.php:302
-#: includes/class-accessible-sitemap-settings.php:305
+#: includes/class-parich-sitemap-settings.php:339
+#: includes/class-parich-sitemap-settings.php:342
 msgid "Password-protected content"
 msgstr "เนื้อหาที่ป้องกันด้วยรหัสผ่าน"
 
-#: includes/class-accessible-sitemap-settings.php:308
+#: includes/class-parich-sitemap-settings.php:345
 msgid "Hide pages, posts and other content protected by a password"
 msgstr "ซ่อนหน้า เรื่อง และเนื้อหาอื่นที่ป้องกันด้วยรหัสผ่าน"
 
-#: includes/class-accessible-sitemap-settings.php:315
+#: includes/class-parich-sitemap-settings.php:352
 msgid "Links"
 msgstr "ลิงก์"
 
-#: includes/class-accessible-sitemap-settings.php:318
-#: includes/class-accessible-sitemap-settings.php:321
+#: includes/class-parich-sitemap-settings.php:355
+#: includes/class-parich-sitemap-settings.php:358
 msgid "Search engines"
 msgstr "เครื่องมือค้นหา"
 
-#: includes/class-accessible-sitemap-settings.php:324
+#: includes/class-parich-sitemap-settings.php:361
 msgid "Add rel=\"nofollow\" to the links"
 msgstr "เพิ่ม rel=\"nofollow\" ให้ลิงก์"
 
-#: includes/class-accessible-sitemap-settings.php:326
+#: includes/class-parich-sitemap-settings.php:363
 msgid "Usually best left off: it tells search engines not to follow the sitemap links."
 msgstr "โดยทั่วไปควรปิดไว้ เพราะจะบอกเครื่องมือค้นหาไม่ให้ติดตามลิงก์ในแผนผังเว็บไซต์"
 
-#: includes/class-accessible-sitemap-settings.php:364
+#: includes/class-parich-sitemap-settings.php:401
 msgid "The full sitemap: pages, posts by category, other content types and taxonomies (plus archives and authors unless hidden in the settings)."
 msgstr "แผนผังเว็บไซต์แบบเต็ม: หน้าเว็บไซต์ เรื่องตามหมวดหมู่ ชนิดเนื้อหาอื่น และการจัดกลุ่มเนื้อหา (รวมคลังเรื่องและผู้เขียน ถ้าไม่ได้ซ่อนไว้ในการตั้งค่า)"
 
-#: includes/class-accessible-sitemap-settings.php:365
+#: includes/class-parich-sitemap-settings.php:402
 msgid "Only one kind of content. Also: post, category, tag, archive, author, or the name of a public content type or taxonomy (listed below)."
 msgstr "แสดงเนื้อหาเพียงชนิดเดียว ใช้ได้ทั้ง post, category, tag, archive, author หรือชื่อชนิดเนื้อหาและการจัดกลุ่มเนื้อหาที่เป็นสาธารณะ (ดูรายชื่อด้านล่าง)"
 
-#: includes/class-accessible-sitemap-settings.php:366
+#: includes/class-parich-sitemap-settings.php:403
 msgid "Order pages by: post_title, menu_order, post_date, post_modified, ID, post_author, post_name."
 msgstr "เรียงหน้าตาม: post_title, menu_order, post_date, post_modified, ID, post_author, post_name"
 
-#: includes/class-accessible-sitemap-settings.php:367
+#: includes/class-parich-sitemap-settings.php:404
 msgid "Order categories and their posts; order is ASC or DESC. Categories also accept: id, name, slug, count, term_group."
 msgstr "เรียงหมวดหมู่และเรื่องในหมวดหมู่ โดย order ใช้ ASC หรือ DESC และหมวดหมู่รับค่า id, name, slug, count, term_group ได้ด้วย"
 
-#: includes/class-accessible-sitemap-settings.php:368
+#: includes/class-parich-sitemap-settings.php:405
 msgid "Order authors by: name, email, url, registered, id, user_login, post_count."
 msgstr "เรียงผู้เขียนตาม: name, email, url, registered, id, user_login, post_count"
 
-#: includes/class-accessible-sitemap-settings.php:369
+#: includes/class-parich-sitemap-settings.php:406
 msgid "Heading level of each section (2–6, default 2). Pick the level that follows the headings above the sitemap on the page."
 msgstr "ระดับหัวข้อของแต่ละส่วน (2–6 ค่าเริ่มต้น 2) เลือกระดับที่ต่อจากหัวข้อที่อยู่เหนือแผนผังในหน้านั้น"
 
-#: includes/class-accessible-sitemap-settings.php:370
+#: includes/class-parich-sitemap-settings.php:407
 msgid "Hide the \"On this page\" links shown when there are two or more sections."
 msgstr "ซ่อนลิงก์ \"ในหน้านี้\" ที่แสดงเมื่อมีตั้งแต่สองส่วนขึ้นไป"
 
-#: includes/class-accessible-sitemap-settings.php:371
+#: includes/class-parich-sitemap-settings.php:408
 msgid "Hide the section headings (the \"On this page\" links are hidden too)."
 msgstr "ซ่อนหัวข้อของแต่ละส่วน (ลิงก์ \"ในหน้านี้\" จะถูกซ่อนด้วย)"
 
-#: includes/class-accessible-sitemap-settings.php:372
+#: includes/class-parich-sitemap-settings.php:409
 msgid "Hide the word \"Category:\" before category names."
 msgstr "ซ่อนคำว่า \"หมวดหมู่:\" หน้าชื่อหมวดหมู่"
 
-#: includes/class-accessible-sitemap-settings.php:376
+#: includes/class-parich-sitemap-settings.php:413
 msgid "Rename a section. Also: posts_title, categories_title, tags_title, archives_title, authors_title."
 msgstr "เปลี่ยนชื่อส่วน ใช้ได้ทั้ง posts_title, categories_title, tags_title, archives_title, authors_title"
 
-#: includes/class-accessible-sitemap-settings.php:377
+#: includes/class-parich-sitemap-settings.php:414
 msgid "Private pages only. Shown only to users who can read private pages."
 msgstr "เฉพาะหน้าส่วนตัว แสดงเฉพาะผู้ใช้ที่มีสิทธิ์อ่านหน้าส่วนตัว"
 
-#: includes/class-accessible-sitemap-settings.php:384
-#: includes/class-accessible-sitemap-settings.php:390
+#: includes/class-parich-sitemap-settings.php:421
+#: includes/class-parich-sitemap-settings.php:427
 msgid "Shortcode"
 msgstr "Shortcode"
 
-#: includes/class-accessible-sitemap-settings.php:387
+#: includes/class-parich-sitemap-settings.php:424
 msgid "Shortcode examples"
 msgstr "ตัวอย่าง shortcode"
 
-#: includes/class-accessible-sitemap-settings.php:391
+#: includes/class-parich-sitemap-settings.php:428
 msgid "Shows"
 msgstr "สิ่งที่แสดง"
 
-#: includes/class-accessible-sitemap-settings.php:405
+#: includes/class-parich-sitemap-settings.php:442
 msgid "Content types and taxonomies on this site"
 msgstr "ชนิดเนื้อหาและการจัดกลุ่มเนื้อหาในเว็บนี้"
 
-#: includes/class-accessible-sitemap-settings.php:413
+#: includes/class-parich-sitemap-settings.php:450
 msgid "Coming from WP Sitemap Page"
 msgstr "ย้ายมาจาก WP Sitemap Page"
 
-#: includes/class-accessible-sitemap-settings.php:414
+#: includes/class-parich-sitemap-settings.php:451
 msgid "Existing [wp_sitemap_page] shortcodes keep working once WP Sitemap Page is deactivated: they are shown by this plugin with the same attributes. Its settings are copied the first time this plugin runs."
 msgstr "shortcode [wp_sitemap_page] ที่มีอยู่แล้วจะยังใช้ได้หลังปิด WP Sitemap Page โดยปลั๊กอินนี้จะแสดงผลแทนด้วย attribute เดิม และการตั้งค่าของปลั๊กอินเดิมจะถูกคัดลอกมาเมื่อปลั๊กอินนี้ทำงานครั้งแรก"
 
@@ -468,21 +468,21 @@ msgid "แผนผังเว็บไซต์"
 msgstr "แผนผังเว็บไซต์"
 
 #. translators: 1: number of posts not listed, 2: category name
-#: includes/class-accessible-sitemap-renderer.php:653
+#: includes/class-parich-sitemap-renderer.php:653
 #, php-format
 msgid "%1$d more in %2$s"
 msgstr "อีก %1$d เรื่องในหมวด %2$s"
 
-#: includes/class-accessible-sitemap-settings.php:248
+#: includes/class-parich-sitemap-settings.php:285
 #: build/sitemap/index.js:3
 msgid "Posts per category"
 msgstr "จำนวนเรื่องต่อหมวดหมู่"
 
-#: includes/class-accessible-sitemap-settings.php:251
+#: includes/class-parich-sitemap-settings.php:288
 msgid "0 lists every post. Otherwise the first posts of each category are listed, followed by a link to the category page for the rest — recommended for sites with thousands of posts."
 msgstr "0 คือแสดงทุกเรื่อง ถ้าใส่ตัวเลข จะแสดงเฉพาะเรื่องแรก ๆ ของแต่ละหมวดหมู่ ตามด้วยลิงก์ไปหน้าหมวดหมู่สำหรับเรื่องที่เหลือ — แนะนำสำหรับเว็บที่มีหลายพันเรื่อง"
 
-#: includes/class-accessible-sitemap-settings.php:375
+#: includes/class-parich-sitemap-settings.php:412
 msgid "At most 20 posts per category, then a link to the category page. Overrides the setting; 0 lists every post."
 msgstr "แสดงไม่เกิน 20 เรื่องต่อหมวดหมู่ ตามด้วยลิงก์ไปหน้าหมวดหมู่ ใช้แทนค่าในการตั้งค่า และ 0 คือแสดงทุกเรื่อง"
 
@@ -493,23 +493,23 @@ msgid "Empty: use the plugin setting (%d). 0: every post."
 msgstr "เว้นว่าง: ใช้ค่าในการตั้งค่าปลั๊กอิน (%d) 0: แสดงทุกเรื่อง"
 
 #. translators: %d: number of posts in the category and its sub-categories
-#: includes/class-accessible-sitemap-renderer.php:701
+#: includes/class-parich-sitemap-renderer.php:701
 #, php-format
 msgid "(%d post)"
 msgid_plural "(%d posts)"
 msgstr[0] "(%d เรื่อง)"
 
 #. translators: %s: category name
-#: includes/class-accessible-sitemap-renderer.php:703
+#: includes/class-parich-sitemap-renderer.php:703
 #, php-format
 msgid "All posts in %s"
 msgstr "เรื่องทั้งหมดในหมวด %s"
 
-#: includes/class-accessible-sitemap-settings.php:373
+#: includes/class-parich-sitemap-settings.php:410
 msgid "Plain nested lists instead of the tree with connecting lines (the default). For the block, pick the \"List\" style."
 msgstr "แสดงเป็นรายการซ้อนธรรมดาแทนแผนผังต้นไม้ที่มีเส้นเชื่อม (ค่าเริ่มต้น) สำหรับบล็อก ให้เลือกสไตล์ \"รายการ\""
 
-#: includes/class-accessible-sitemap-settings.php:374
+#: includes/class-parich-sitemap-settings.php:411
 msgid "Categories can be folded away, expanded at first; collapsible=\"closed\" starts them folded."
 msgstr "พับ/ขยายหมวดหมู่ได้ โดยเริ่มแบบขยายไว้ ส่วน collapsible=\"closed\" จะเริ่มแบบยุบไว้"
 
@@ -544,58 +544,58 @@ msgid "List"
 msgstr "รายการ"
 
 #. Plugin Name of the plugin
-#: accessible-html-sitemap.php
-#: includes/class-accessible-sitemap-settings.php:128
-#: includes/class-accessible-sitemap-settings.php:129
-#: includes/class-accessible-sitemap-settings.php:170
+#: parich-accessible-sitemap.php
+#: includes/class-parich-sitemap-settings.php:165
+#: includes/class-parich-sitemap-settings.php:166
+#: includes/class-parich-sitemap-settings.php:207
 #: build/sitemap/index.js:3
-msgid "Accessible HTML Sitemap"
-msgstr "Accessible HTML Sitemap"
+msgid "Parich Accessible Sitemap"
+msgstr "Parich Accessible Sitemap"
 
 #. Plugin URI of the plugin
-#: accessible-html-sitemap.php
-msgid "https://github.com/parich/accessible-html-sitemap"
-msgstr "https://github.com/parich/accessible-html-sitemap"
+#: parich-accessible-sitemap.php
+msgid "https://github.com/parich/parich-accessible-sitemap"
+msgstr "https://github.com/parich/parich-accessible-sitemap"
 
 #. Description of the plugin
-#: accessible-html-sitemap.php
-msgid "Accessible (WCAG 2.1 AA) HTML sitemap with Thai language support. Use the Accessible HTML Sitemap block or the [accessible_sitemap] shortcode."
-msgstr "แผนผังเว็บไซต์ (HTML sitemap) ที่เข้าถึงได้ตาม WCAG 2.1 AA และรองรับภาษาไทย ใช้ผ่านบล็อก Accessible HTML Sitemap หรือ shortcode [accessible_sitemap]"
+#: parich-accessible-sitemap.php
+msgid "Accessible (WCAG 2.1 AA) HTML sitemap with Thai language support. Use the Parich Accessible Sitemap block or the [parich_sitemap] shortcode."
+msgstr "แผนผังเว็บไซต์ (HTML sitemap) ที่เข้าถึงได้ตาม WCAG 2.1 AA และรองรับภาษาไทย ใช้ผ่านบล็อก Parich Accessible Sitemap หรือ shortcode [parich_sitemap]"
 
-#: includes/class-accessible-sitemap-settings.php:171
-msgid "Accessible HTML Sitemap pages"
-msgstr "หน้าของ Accessible HTML Sitemap"
+#: includes/class-parich-sitemap-settings.php:208
+msgid "Parich Accessible Sitemap pages"
+msgstr "หน้าของ Parich Accessible Sitemap"
 
-#: includes/class-accessible-sitemap-settings.php:385
-msgid "Add the \"Accessible HTML Sitemap\" block, or one of these shortcodes, to any page, post or template."
-msgstr "เพิ่มบล็อก \"Accessible HTML Sitemap\" หรือ shortcode ด้านล่างลงในหน้า เรื่อง หรือเทมเพลตใดก็ได้"
+#: includes/class-parich-sitemap-settings.php:422
+msgid "Add the \"Parich Accessible Sitemap\" block, or one of these shortcodes, to any page, post or template."
+msgstr "เพิ่มบล็อก \"Parich Accessible Sitemap\" หรือ shortcode ด้านล่างลงในหน้า เรื่อง หรือเทมเพลตใดก็ได้"
 
 #: build/sitemap/block.json
 msgctxt "block title"
-msgid "Accessible HTML Sitemap"
-msgstr "Accessible HTML Sitemap"
+msgid "Parich Accessible Sitemap"
+msgstr "Parich Accessible Sitemap"
 
-#: includes/class-accessible-sitemap-renderer.php:401
+#: includes/class-parich-sitemap-renderer.php:401
 msgid "Back to contents"
 msgstr "กลับไปที่สารบัญ"
 
-#: includes/class-accessible-sitemap-settings.php:243
+#: includes/class-parich-sitemap-settings.php:280
 msgid "Applies to {date}, {year} and the archive list: 2026 is shown as 2569. On by default when the site language is Thai."
 msgstr "ใช้กับ {date}, {year} และรายการคลังเรื่อง: ปี 2026 จะแสดงเป็น 2569 เปิดไว้เป็นค่าเริ่มต้นเมื่อภาษาของเว็บเป็นภาษาไทย"
 
-#: accessible-html-sitemap.php:149
-#: includes/class-accessible-sitemap-settings.php:421
+#: includes/class-parich-sitemap-settings.php:458
+#: parich-accessible-sitemap.php:128
 msgid "Donate"
 msgstr "บริจาค"
 
-#: includes/class-accessible-sitemap-settings.php:419
+#: includes/class-parich-sitemap-settings.php:456
 msgid "Support this plugin"
 msgstr "สนับสนุนปลั๊กอินนี้"
 
-#: includes/class-accessible-sitemap-settings.php:420
-msgid "Accessible HTML Sitemap is free, with every feature for everyone. If it is useful to you, you can support its development:"
-msgstr "Accessible HTML Sitemap ใช้ได้ฟรีทุกความสามารถสำหรับทุกคน หากปลั๊กอินนี้มีประโยชน์กับคุณ สามารถสนับสนุนการพัฒนาได้ทาง:"
+#: includes/class-parich-sitemap-settings.php:457
+msgid "Parich Accessible Sitemap is free, with every feature for everyone. If it is useful to you, you can support its development:"
+msgstr "Parich Accessible Sitemap ใช้ได้ฟรีทุกความสามารถสำหรับทุกคน หากปลั๊กอินนี้มีประโยชน์กับคุณ สามารถสนับสนุนการพัฒนาได้ทาง:"
 
-#: includes/class-accessible-sitemap-settings.php:422
+#: includes/class-parich-sitemap-settings.php:459
 msgid "Secure payment by Stripe."
 msgstr "ชำระเงินอย่างปลอดภัยผ่าน Stripe"

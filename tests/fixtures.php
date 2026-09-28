@@ -1,9 +1,9 @@
 <?php
 /**
  * Shared fixtures and helpers for the PHP tests. Everything is created inside
- * the bootstrap's transaction and rolled back by ahs_test_done().
+ * the bootstrap's transaction and rolled back by pas_test_done().
  *
- * @package Accessible_HTML_Sitemap
+ * @package Parich_Accessible_Sitemap
  */
 
 /**
@@ -13,14 +13,14 @@
  *
  * @return array Named IDs.
  */
-function ahs_test_create_fixtures()
+function pas_test_create_fixtures()
 {
 	$admins = get_users(array('role' => 'administrator', 'number' => 1, 'fields' => 'ID'));
 	$f = array('admin' => (int) $admins[0]);
 	wp_set_current_user($f['admin']);
 
 	$f['author'] = wp_insert_user(array(
-		'user_login' => 'ahs_test_author',
+		'user_login' => 'pas_test_author',
 		'user_pass' => wp_generate_password(),
 		'role' => 'author',
 		'display_name' => 'Demo Test Author',
@@ -64,23 +64,23 @@ function ahs_test_create_fixtures()
 	$f['post_a'] = $post('Demo A Post', '2024-12-05 09:00:00', array($f['cat_a']));
 
 	// Registered for this process only.
-	register_post_type('ahs_test_book', array('public' => true, 'label' => 'Demo Books'));
-	register_post_type('ahs_test_empty', array('public' => true, 'label' => 'Demo Empty Type'));
-	register_taxonomy('ahs_test_genre', 'ahs_test_book', array('public' => true, 'label' => 'Demo Genres'));
+	register_post_type('pas_test_book', array('public' => true, 'label' => 'Demo Books'));
+	register_post_type('pas_test_empty', array('public' => true, 'label' => 'Demo Empty Type'));
+	register_taxonomy('pas_test_genre', 'pas_test_book', array('public' => true, 'label' => 'Demo Genres'));
 
-	$f['book_zeta'] = wp_insert_post(array('post_type' => 'ahs_test_book', 'post_status' => 'publish', 'post_title' => 'Demo Book Zeta', 'post_date' => '2025-01-01 09:00:00'));
-	$f['book_alpha'] = wp_insert_post(array('post_type' => 'ahs_test_book', 'post_status' => 'publish', 'post_title' => 'Demo Book Alpha', 'post_date' => '2025-01-02 09:00:00'));
-	$f['genre'] = $term('Demo Genre Fiction', 'ahs_test_genre');
-	wp_set_object_terms($f['book_zeta'], array($f['genre']), 'ahs_test_genre');
+	$f['book_zeta'] = wp_insert_post(array('post_type' => 'pas_test_book', 'post_status' => 'publish', 'post_title' => 'Demo Book Zeta', 'post_date' => '2025-01-01 09:00:00'));
+	$f['book_alpha'] = wp_insert_post(array('post_type' => 'pas_test_book', 'post_status' => 'publish', 'post_title' => 'Demo Book Alpha', 'post_date' => '2025-01-02 09:00:00'));
+	$f['genre'] = $term('Demo Genre Fiction', 'pas_test_genre');
+	wp_set_object_terms($f['book_zeta'], array($f['genre']), 'pas_test_genre');
 
 	wp_set_current_user(0);
 	return $f;
 }
 
 /**
- * Writes the same settings for the original plugin (wsp_*) and for this one (accessible_sitemap_*).
+ * Writes the same settings for the original plugin (wsp_*) and for this one (parich_sitemap_*).
  */
-function ahs_test_apply_settings(array $settings = array())
+function pas_test_apply_settings(array $settings = array())
 {
 	$s = array_merge(array(
 		'excluded_sections' => array(),
@@ -111,21 +111,21 @@ function ahs_test_apply_settings(array $settings = array())
 	update_option('wsp_is_display_post_multiple_time', $flag($s['post_multiple_times']));
 	update_option('wsp_posts_by_category', $s['post_template']);
 
-	update_option('accessible_sitemap_excluded_sections', $s['excluded_sections']);
-	update_option('accessible_sitemap_excluded_post_types', $s['excluded_post_types']);
-	update_option('accessible_sitemap_excluded_taxonomies', $s['excluded_taxonomies']);
-	update_option('accessible_sitemap_exclude_pages', implode(',', $s['exclude_ids']));
-	update_option('accessible_sitemap_exclude_password_protected', $s['exclude_password_protected']);
-	update_option('accessible_sitemap_add_nofollow', $s['nofollow']);
-	update_option('accessible_sitemap_display_post_multiple_times', $s['post_multiple_times']);
-	update_option('accessible_sitemap_post_template', $s['post_template']);
+	update_option('parich_sitemap_excluded_sections', $s['excluded_sections']);
+	update_option('parich_sitemap_excluded_post_types', $s['excluded_post_types']);
+	update_option('parich_sitemap_excluded_taxonomies', $s['excluded_taxonomies']);
+	update_option('parich_sitemap_exclude_pages', implode(',', $s['exclude_ids']));
+	update_option('parich_sitemap_exclude_password_protected', $s['exclude_password_protected']);
+	update_option('parich_sitemap_add_nofollow', $s['nofollow']);
+	update_option('parich_sitemap_display_post_multiple_times', $s['post_multiple_times']);
+	update_option('parich_sitemap_post_template', $s['post_template']);
 }
 
 /**
  * @return string[] Every link target in document order (character references decoded),
  *                  without in-page "#…" links (the table of contents).
  */
-function ahs_test_hrefs($html)
+function pas_test_hrefs($html)
 {
 	$processor = new WP_HTML_Tag_Processor((string) $html);
 	$hrefs = array();
@@ -142,7 +142,7 @@ function ahs_test_hrefs($html)
  * Makes the given query the "current page" (is_page(), get_queried_object_id() …).
  * Call with no argument to go back to a neutral query.
  */
-function ahs_test_view($query_args = null)
+function pas_test_view($query_args = null)
 {
 	$query = $query_args === null ? new WP_Query() : new WP_Query($query_args);
 	$GLOBALS['wp_query'] = $query;
@@ -152,9 +152,9 @@ function ahs_test_view($query_args = null)
 /**
  * Removes the HTML pages a test file wrote earlier (files named "<prefix>-*.html").
  */
-function ahs_test_a11y_reset($prefix)
+function pas_test_a11y_reset($prefix)
 {
-	$dir = AHS_TEST_PLUGIN_DIR . '/tests/a11y/out';
+	$dir = PAS_TEST_PLUGIN_DIR . '/tests/a11y/out';
 	wp_mkdir_p($dir);
 	foreach ((array) glob("{$dir}/{$prefix}-*.html") as $file) {
 		unlink($file);
@@ -169,23 +169,23 @@ function ahs_test_a11y_reset($prefix)
  * @param string $before   Page content before the sitemap (the page outline).
  * @param string $lang     Page language.
  */
-function ahs_test_write_a11y_page($name, $fragment, $before = '<h1>Sitemap</h1>', $lang = 'en')
+function pas_test_write_a11y_page($name, $fragment, $before = '<h1>Sitemap</h1>', $lang = 'en')
 {
 	// The built stylesheet is included, so the browser checks (reflow) see the real
 	// tree layout; the font stands in for a theme's (Thai-capable on Windows).
-	$css = (string) file_get_contents(AHS_TEST_PLUGIN_DIR . '/build/sitemap/style-index.css');
+	$css = (string) file_get_contents(PAS_TEST_PLUGIN_DIR . '/build/sitemap/style-index.css');
 	$html = "<!doctype html>\n<html lang=\"" . esc_attr($lang) . "\">\n<head>\n<meta charset=\"utf-8\">\n"
 		. '<meta name="viewport" content="width=device-width, initial-scale=1">' . "\n"
 		. '<title>' . esc_html($name) . "</title>\n"
 		. "<style>body { font-family: \"Leelawadee UI\", Tahoma, sans-serif; margin: 16px; }\n{$css}</style>\n"
 		. "</head>\n<body>\n<main>\n{$before}\n{$fragment}\n</main>\n</body>\n</html>\n";
-	file_put_contents(AHS_TEST_PLUGIN_DIR . "/tests/a11y/out/{$name}.html", $html);
+	file_put_contents(PAS_TEST_PLUGIN_DIR . "/tests/a11y/out/{$name}.html", $html);
 }
 
 /**
  * Structure of rendered markup, for assertions.
  */
-function ahs_test_markup($html)
+function pas_test_markup($html)
 {
 	$summary = array(
 		'ids' => array(),
@@ -229,10 +229,10 @@ function ahs_test_markup($html)
 /**
  * Compares the link sequence of the original plugin with this renderer.
  */
-function ahs_test_parity($label, array $atts)
+function pas_test_parity($label, array $atts)
 {
-	$old = ahs_test_hrefs(wsp_wp_sitemap_page_main_func($atts));
-	$new = ahs_test_hrefs(Accessible_Sitemap_Renderer::render($atts));
+	$old = pas_test_hrefs(wsp_wp_sitemap_page_main_func($atts));
+	$new = pas_test_hrefs(Parich_Sitemap_Renderer::render($atts));
 
 	$detail = '';
 	if ($old !== $new) {
@@ -249,5 +249,5 @@ function ahs_test_parity($label, array $atts)
 			$new[$index] ?? '(none)'
 		);
 	}
-	return ahs_test_assert("parity: {$label} (" . count($new) . ' links)', $old === $new && count($new) > 0, $detail);
+	return pas_test_assert("parity: {$label} (" . count($new) . ' links)', $old === $new && count($new) > 0, $detail);
 }

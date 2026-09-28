@@ -43,7 +43,7 @@ addEventListener( 'load', () => {
 function check( file ) {
 	const copy = path.join(
 		os.tmpdir(),
-		`ahs-reflow-${ process.pid }-${ path.basename( file ) }`
+		`pas-reflow-${ process.pid }-${ path.basename( file ) }`
 	);
 	fs.writeFileSync(
 		copy,

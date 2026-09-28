@@ -4,30 +4,30 @@
  * is read after the consonant it is written before — with PHP intl's Collator and
  * with the built-in fallback. Lists without Thai keep the database's order.
  *
- * @package Accessible_HTML_Sitemap
+ * @package Parich_Accessible_Sitemap
  */
 
 require __DIR__ . '/../bootstrap.php';
 require __DIR__ . '/../fixtures.php';
 
-$f = ahs_test_create_fixtures();
-ahs_test_apply_settings();
-ahs_test_a11y_reset('09');
+$f = pas_test_create_fixtures();
+pas_test_apply_settings();
+pas_test_a11y_reset('09');
 
 // Built fresh every time, so switching the collator or the filter shows at once.
-add_filter('accessible_sitemap_use_cache', '__return_false');
+add_filter('parich_sitemap_use_cache', '__return_false');
 
 $sort = function (array $names, $descending = false) {
-	return Accessible_Sitemap_Thai_Sort::sort($names, function ($name) {
+	return Parich_Sitemap_Thai_Sort::sort($names, function ($name) {
 		return $name;
 	}, $descending);
 };
 $without_intl = function (callable $callback) {
-	add_filter('accessible_sitemap_collator', '__return_null');
+	add_filter('parich_sitemap_collator', '__return_null');
 	try {
 		return $callback();
 	} finally {
-		remove_filter('accessible_sitemap_collator', '__return_null');
+		remove_filter('parich_sitemap_collator', '__return_null');
 	}
 };
 
@@ -45,7 +45,7 @@ $show = function (array $list) {
 	return implode(' | ', $list);
 };
 
-ahs_test_section('Sorter');
+pas_test_section('Sorter');
 // Royal Institute dictionary order (and ICU's Thai rules): digits, Thai, then Latin.
 $dictionary = array(
 	'2024 report', 'กก', 'กะ', 'กัก', 'กา', 'ก่า', 'ก้า', 'กำ', 'กิน', 'เก', 'เก่ง', 'เก็บ', 'เกม', 'แก', 'แก้ว', 'โก', 'ใกล้', 'ไก่', 'ไกล',
@@ -57,16 +57,16 @@ mt_srand(11);
 shuffle($shuffled);
 if (class_exists('Collator')) {
 	$result = $sort($shuffled);
-	ahs_test_assert('intl: dictionary order', $result === $dictionary, $show($result));
+	pas_test_assert('intl: dictionary order', $result === $dictionary, $show($result));
 } else {
 	echo "  [SKIP] intl: PHP has no intl extension here (the fallback is checked below)\n";
 }
 $result = $without_intl(function () use ($sort, $shuffled) {
 	return $sort($shuffled);
 });
-ahs_test_assert('fallback (no intl): same dictionary order', $result === $dictionary, $show($result));
-ahs_test_assert('descending', $sort(array('กา', 'เกม', 'ขนม')) === array('กา', 'เกม', 'ขนม') && $sort(array('ขนม', 'กา', 'เกม'), true) === array('ขนม', 'เกม', 'กา'));
-ahs_test_assert('no Thai: order left as given', $sort(array('Zeta', 'alpha', 'Beta', '10', '9')) === array('Zeta', 'alpha', 'Beta', '10', '9'));
+pas_test_assert('fallback (no intl): same dictionary order', $result === $dictionary, $show($result));
+pas_test_assert('descending', $sort(array('กา', 'เกม', 'ขนม')) === array('กา', 'เกม', 'ขนม') && $sort(array('ขนม', 'กา', 'เกม'), true) === array('ขนม', 'เกม', 'กา'));
+pas_test_assert('no Thai: order left as given', $sort(array('Zeta', 'alpha', 'Beta', '10', '9')) === array('Zeta', 'alpha', 'Beta', '10', '9'));
 
 $item = function ($id, $name, $group = 0) {
 	return (object) array('id' => $id, 'name' => $name, 'group' => $group);
@@ -80,19 +80,19 @@ $by_name = function ($item) {
 $by_group = function ($item) {
 	return $item->group;
 };
-ahs_test_assert('equal names keep the order they came in', $ids(Accessible_Sitemap_Thai_Sort::sort(array($item(1, 'กา'), $item(2, 'เกม'), $item(3, 'กา')), $by_name)) === array(1, 3, 2)
-	&& $ids(Accessible_Sitemap_Thai_Sort::sort(array($item(3, 'กา'), $item(2, 'เกม'), $item(1, 'กา')), $by_name)) === array(3, 1, 2));
-ahs_test_assert('group first (menu order), then the name', $ids(Accessible_Sitemap_Thai_Sort::sort(array($item(1, 'กา', 2), $item(2, 'ไก่', 0), $item(3, 'เกม', 0), $item(4, 'ขนม', 1)), $by_name, false, $by_group)) === array(3, 2, 4, 1));
-ahs_test_assert('keys are not kept (a list comes back)', array_keys($sort(array(5 => 'เกม', 9 => 'กา'))) === array(0, 1));
-add_filter('accessible_sitemap_thai_sort', '__return_false');
-ahs_test_assert('filter accessible_sitemap_thai_sort=false: order left as given', $sort(array('เกม', 'กา')) === array('เกม', 'กา'));
-remove_filter('accessible_sitemap_thai_sort', '__return_false');
+pas_test_assert('equal names keep the order they came in', $ids(Parich_Sitemap_Thai_Sort::sort(array($item(1, 'กา'), $item(2, 'เกม'), $item(3, 'กา')), $by_name)) === array(1, 3, 2)
+	&& $ids(Parich_Sitemap_Thai_Sort::sort(array($item(3, 'กา'), $item(2, 'เกม'), $item(1, 'กา')), $by_name)) === array(3, 1, 2));
+pas_test_assert('group first (menu order), then the name', $ids(Parich_Sitemap_Thai_Sort::sort(array($item(1, 'กา', 2), $item(2, 'ไก่', 0), $item(3, 'เกม', 0), $item(4, 'ขนม', 1)), $by_name, false, $by_group)) === array(3, 2, 4, 1));
+pas_test_assert('keys are not kept (a list comes back)', array_keys($sort(array(5 => 'เกม', 9 => 'กา'))) === array(0, 1));
+add_filter('parich_sitemap_thai_sort', '__return_false');
+pas_test_assert('filter parich_sitemap_thai_sort=false: order left as given', $sort(array('เกม', 'กา')) === array('เกม', 'กา'));
+remove_filter('parich_sitemap_thai_sort', '__return_false');
 $broken = array("\xE0\xB8", 'กา', "\xFF");
-ahs_test_assert('text that is not valid UTF-8: no notice, nothing lost', count($sort($broken)) === 3 && count($without_intl(function () use ($sort, $broken) {
+pas_test_assert('text that is not valid UTF-8: no notice, nothing lost', count($sort($broken)) === 3 && count($without_intl(function () use ($sort, $broken) {
 	return $sort($broken);
 })) === 3);
 
-ahs_test_section('Thai content in the sitemap');
+pas_test_section('Thai content in the sitemap');
 wp_set_current_user($f['admin']);
 $add_category = function ($name, $parent = 0) {
 	$result = wp_insert_term($name, 'category', array('parent' => $parent));
@@ -129,9 +129,9 @@ $add_page('ติดต่อ', '2025-01-04 09:00:00');
 $add_page('อาคารสถานที่', '2025-01-05 09:00:00', 3);
 
 $add_book = function ($title, $genre) {
-	$id = wp_insert_post(array('post_type' => 'ahs_test_book', 'post_status' => 'publish', 'post_title' => $title));
-	$term = term_exists($genre, 'ahs_test_genre') ?: wp_insert_term($genre, 'ahs_test_genre');
-	wp_set_object_terms($id, array((int) $term['term_id']), 'ahs_test_genre');
+	$id = wp_insert_post(array('post_type' => 'pas_test_book', 'post_status' => 'publish', 'post_title' => $title));
+	$term = term_exists($genre, 'pas_test_genre') ?: wp_insert_term($genre, 'pas_test_genre');
+	wp_set_object_terms($id, array((int) $term['term_id']), 'pas_test_genre');
 	return $id;
 };
 $add_book('เกมชีวิต', 'นิยาย');
@@ -140,32 +140,32 @@ $add_book('แมวเหมียว', 'ไซไฟ');
 wp_set_current_user(0);
 
 $thai_categories = array('กีฬา', 'เทนนิส', 'แบดมินตัน', 'ฟุตบอล', 'เกษตร', 'ไก่ชน', 'ขนส่ง');
-$html = Accessible_Sitemap_Renderer::render(array('only' => 'post'));
+$html = Parich_Sitemap_Renderer::render(array('only' => 'post'));
 $names = $texts($html, $thai_categories);
-ahs_test_assert('posts by category: categories and sub-categories in dictionary order', $names === $thai_categories, $show($names));
+pas_test_assert('posts by category: categories and sub-categories in dictionary order', $names === $thai_categories, $show($names));
 $all = $texts($html);
-ahs_test_assert('Thai categories before Latin ones (as in the Thai rules)', array_search('ขนส่ง', $all, true) < array_search('Demo Cat A', $all, true));
+pas_test_assert('Thai categories before Latin ones (as in the Thai rules)', array_search('ขนส่ง', $all, true) < array_search('Demo Cat A', $all, true));
 $farm_posts = array('ไถนา', 'ข้าวหอมมะลิ', 'เก็บเกี่ยว');
 $result = $texts($html, $farm_posts);
-ahs_test_assert('posts keep date order by default (newest first)', $result === array('เก็บเกี่ยว', 'ไถนา', 'ข้าวหอมมะลิ'), $show($result));
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'post', 'sort' => 'title')), $farm_posts);
-ahs_test_assert('sort="title": posts by title, newest-first direction (DESC) kept', $result === array('ไถนา', 'ข้าวหอมมะลิ', 'เก็บเกี่ยว'), $show($result));
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'post', 'sort' => 'post_title', 'order' => 'ASC')), $farm_posts);
-ahs_test_assert('sort="post_title" order="ASC"', $result === array('เก็บเกี่ยว', 'ข้าวหอมมะลิ', 'ไถนา'), $show($result));
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'post', 'sort' => 'title')), $thai_categories);
-ahs_test_assert('sort="title": categories by name too', $result === $thai_categories, $show($result));
+pas_test_assert('posts keep date order by default (newest first)', $result === array('เก็บเกี่ยว', 'ไถนา', 'ข้าวหอมมะลิ'), $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'post', 'sort' => 'title')), $farm_posts);
+pas_test_assert('sort="title": posts by title, newest-first direction (DESC) kept', $result === array('ไถนา', 'ข้าวหอมมะลิ', 'เก็บเกี่ยว'), $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'post', 'sort' => 'post_title', 'order' => 'ASC')), $farm_posts);
+pas_test_assert('sort="post_title" order="ASC"', $result === array('เก็บเกี่ยว', 'ข้าวหอมมะลิ', 'ไถนา'), $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'post', 'sort' => 'title')), $thai_categories);
+pas_test_assert('sort="title": categories by name too', $result === $thai_categories, $show($result));
 
 $flat = array('กีฬา', 'เกษตร', 'ไก่ชน', 'ขนส่ง', 'เทนนิส', 'แบดมินตัน', 'ฟุตบอล');
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'category')), $flat);
-ahs_test_assert('only="category": dictionary order', $result === $flat, $show($result));
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'category', 'sort' => 'term_id')), $flat);
-ahs_test_assert('only="category" sort="term_id": creation order, not re-sorted', $result === array('กีฬา', 'เกษตร', 'ไก่ชน', 'ขนส่ง', 'ฟุตบอล', 'เทนนิส', 'แบดมินตัน'), $show($result));
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'tag')), array('ห้องสมุด', 'การเงิน', 'เอกสาร', 'แนะแนว'));
-ahs_test_assert('only="tag": dictionary order', $result === array('การเงิน', 'แนะแนว', 'ห้องสมุด', 'เอกสาร'), $show($result));
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'ahs_test_genre')), array('นิยาย', 'สารคดี', 'ไซไฟ'));
-ahs_test_assert('custom taxonomy: dictionary order', $result === array('ไซไฟ', 'นิยาย', 'สารคดี'), $show($result));
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'ahs_test_book', 'sort' => 'title')), array('เกมชีวิต', 'ขวัญใจ', 'แมวเหมียว'));
-ahs_test_assert('custom post type sort="title" (DESC)', $result === array('แมวเหมียว', 'ขวัญใจ', 'เกมชีวิต'), $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'category')), $flat);
+pas_test_assert('only="category": dictionary order', $result === $flat, $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'category', 'sort' => 'term_id')), $flat);
+pas_test_assert('only="category" sort="term_id": creation order, not re-sorted', $result === array('กีฬา', 'เกษตร', 'ไก่ชน', 'ขนส่ง', 'ฟุตบอล', 'เทนนิส', 'แบดมินตัน'), $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'tag')), array('ห้องสมุด', 'การเงิน', 'เอกสาร', 'แนะแนว'));
+pas_test_assert('only="tag": dictionary order', $result === array('การเงิน', 'แนะแนว', 'ห้องสมุด', 'เอกสาร'), $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'pas_test_genre')), array('นิยาย', 'สารคดี', 'ไซไฟ'));
+pas_test_assert('custom taxonomy: dictionary order', $result === array('ไซไฟ', 'นิยาย', 'สารคดี'), $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'pas_test_book', 'sort' => 'title')), array('เกมชีวิต', 'ขวัญใจ', 'แมวเหมียว'));
+pas_test_assert('custom post type sort="title" (DESC)', $result === array('แมวเหมียว', 'ขวัญใจ', 'เกมชีวิต'), $show($result));
 
 $get_pages_callbacks = function () {
 	global $wp_filter;
@@ -173,32 +173,32 @@ $get_pages_callbacks = function () {
 };
 $callbacks_before = $get_pages_callbacks();
 $thai_pages = array('ใบสมัคร', 'กิจกรรม', 'เกี่ยวกับเรา', 'ติดต่อ', 'อาคารสถานที่', 'Demo Another Page', 'Demo Parent Page');
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'page')), $thai_pages);
-ahs_test_assert('pages by default: menu order first, then titles in dictionary order', $result === array('กิจกรรม', 'เกี่ยวกับเรา', 'ติดต่อ', 'ใบสมัคร', 'Demo Another Page', 'Demo Parent Page', 'อาคารสถานที่'), $show($result));
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'page', 'sort' => 'post_title')), $thai_pages);
-ahs_test_assert('pages sort="post_title": titles only', $result === array('กิจกรรม', 'เกี่ยวกับเรา', 'ติดต่อ', 'ใบสมัคร', 'อาคารสถานที่', 'Demo Another Page', 'Demo Parent Page'), $show($result));
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'page', 'sort' => 'post_date')), array_slice($thai_pages, 0, 5));
-ahs_test_assert('pages sort="post_date": date order, not re-sorted', $result === array('ใบสมัคร', 'กิจกรรม', 'เกี่ยวกับเรา', 'ติดต่อ', 'อาคารสถานที่'), $show($result));
-ahs_test_assert('the get_pages filter is removed again after the sitemap (other page lists untouched)', $get_pages_callbacks() === $callbacks_before);
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'page')), $thai_pages);
+pas_test_assert('pages by default: menu order first, then titles in dictionary order', $result === array('กิจกรรม', 'เกี่ยวกับเรา', 'ติดต่อ', 'ใบสมัคร', 'Demo Another Page', 'Demo Parent Page', 'อาคารสถานที่'), $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'page', 'sort' => 'post_title')), $thai_pages);
+pas_test_assert('pages sort="post_title": titles only', $result === array('กิจกรรม', 'เกี่ยวกับเรา', 'ติดต่อ', 'ใบสมัคร', 'อาคารสถานที่', 'Demo Another Page', 'Demo Parent Page'), $show($result));
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'page', 'sort' => 'post_date')), array_slice($thai_pages, 0, 5));
+pas_test_assert('pages sort="post_date": date order, not re-sorted', $result === array('ใบสมัคร', 'กิจกรรม', 'เกี่ยวกับเรา', 'ติดต่อ', 'อาคารสถานที่'), $show($result));
+pas_test_assert('the get_pages filter is removed again after the sitemap (other page lists untouched)', $get_pages_callbacks() === $callbacks_before);
 
-ahs_test_section('Fallback, filter and cache');
+pas_test_section('Fallback, filter and cache');
 $result = $without_intl(function () use ($texts, $thai_categories) {
-	return $texts(Accessible_Sitemap_Renderer::render(array('only' => 'post')), $thai_categories);
+	return $texts(Parich_Sitemap_Renderer::render(array('only' => 'post')), $thai_categories);
 });
-ahs_test_assert('without intl: the same order in the sitemap', $result === $thai_categories, $show($result));
-add_filter('accessible_sitemap_thai_sort', '__return_false');
-$result = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'category')), $flat);
+pas_test_assert('without intl: the same order in the sitemap', $result === $thai_categories, $show($result));
+add_filter('parich_sitemap_thai_sort', '__return_false');
+$result = $texts(Parich_Sitemap_Renderer::render(array('only' => 'category')), $flat);
 $database = array_values(array_intersect(wp_list_pluck(get_categories(), 'name'), $flat));
-ahs_test_assert('accessible_sitemap_thai_sort=false: the database order (leading vowels last)', $result === $database && $result !== $flat, $show($result));
-remove_filter('accessible_sitemap_thai_sort', '__return_false');
-remove_filter('accessible_sitemap_use_cache', '__return_false');
-$first = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'post')), $thai_categories);
-$cached = $texts(Accessible_Sitemap_Renderer::render(array('only' => 'post')), $thai_categories);
-ahs_test_assert('cached sitemap keeps the order', $first === $thai_categories && $cached === $thai_categories);
-ahs_test_assert('cache schema raised, so sitemaps cached before this version are rebuilt', Accessible_Sitemap_Renderer::CACHE_SCHEMA >= 2);
+pas_test_assert('parich_sitemap_thai_sort=false: the database order (leading vowels last)', $result === $database && $result !== $flat, $show($result));
+remove_filter('parich_sitemap_thai_sort', '__return_false');
+remove_filter('parich_sitemap_use_cache', '__return_false');
+$first = $texts(Parich_Sitemap_Renderer::render(array('only' => 'post')), $thai_categories);
+$cached = $texts(Parich_Sitemap_Renderer::render(array('only' => 'post')), $thai_categories);
+pas_test_assert('cached sitemap keeps the order', $first === $thai_categories && $cached === $thai_categories);
+pas_test_assert('cache schema raised, so sitemaps cached before this version are rebuilt', Parich_Sitemap_Renderer::CACHE_SCHEMA >= 2);
 
 switch_to_locale('th');
-ahs_test_write_a11y_page('09-thai-order', Accessible_Sitemap_Renderer::render(), '<h1>แผนผังเว็บไซต์</h1>', 'th');
+pas_test_write_a11y_page('09-thai-order', Parich_Sitemap_Renderer::render(), '<h1>แผนผังเว็บไซต์</h1>', 'th');
 restore_previous_locale();
 
-ahs_test_done();
+pas_test_done();

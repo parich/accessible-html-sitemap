@@ -6,7 +6,7 @@
  *
  * Usage: npm run bench            (BENCH_POSTS=5000 npm run bench for more)
  *
- * @package Accessible_HTML_Sitemap
+ * @package Parich_Accessible_Sitemap
  */
 
 require __DIR__ . '/bootstrap.php';
@@ -47,7 +47,7 @@ wp_defer_term_counting(false);
 wp_set_current_user(0);
 printf("site: %d published posts in 30 categories (created in %.0fs)\n\n", wp_count_posts()->publish, microtime(true) - $start);
 
-ahs_test_apply_settings();
+pas_test_apply_settings();
 
 /**
  * @param bool $cold Clear every cache first (the first view after a change).
@@ -55,7 +55,7 @@ ahs_test_apply_settings();
 $measure = function ($label, array $atts, $cold) {
 	global $wpdb;
 	if ($cold) {
-		add_filter('accessible_sitemap_use_cache', '__return_false');
+		add_filter('parich_sitemap_use_cache', '__return_false');
 	}
 	wp_cache_flush(); // No persistent object cache: every request starts empty.
 	if (function_exists('memory_reset_peak_usage')) {
@@ -64,7 +64,7 @@ $measure = function ($label, array $atts, $cold) {
 	$memory = memory_get_usage();
 	$queries = $wpdb->num_queries;
 	$start = microtime(true);
-	$html = Accessible_Sitemap_Renderer::render($atts);
+	$html = Parich_Sitemap_Renderer::render($atts);
 	printf(
 		"%-34s %7.3f s %5d queries %7.1f MB %6d links %6.0f KB\n",
 		$label,
@@ -74,16 +74,16 @@ $measure = function ($label, array $atts, $cold) {
 		substr_count($html, '<a '),
 		strlen($html) / 1024
 	);
-	remove_filter('accessible_sitemap_use_cache', '__return_false');
+	remove_filter('parich_sitemap_use_cache', '__return_false');
 };
 
 printf("%-34s %9s %13s %10s %12s %9s\n", '', 'time', '', 'peak mem', '', 'HTML');
 $measure('posts by category — cold', array('only' => 'post'), true);
 $measure('full sitemap — cold', array(), true);
-Accessible_Sitemap_Renderer::render(array('only' => 'post')); // Fill the cache.
-Accessible_Sitemap_Renderer::render();
+Parich_Sitemap_Renderer::render(array('only' => 'post')); // Fill the cache.
+Parich_Sitemap_Renderer::render();
 $measure('posts by category — warm (cache)', array('only' => 'post'), false);
 $measure('full sitemap — warm (cache)', array(), false);
 $measure('20 posts per category — cold', array('only' => 'post', 'posts_per_category' => 20), true);
 
-ahs_test_done();
+pas_test_done();

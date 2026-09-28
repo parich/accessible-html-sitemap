@@ -1,5 +1,5 @@
 /**
- * Settings screen (Settings → Accessible HTML Sitemap), loaded on that
+ * Settings screen (Settings → Parich Accessible Sitemap), loaded on that
  * screen only.
  *
  * "Support this plugin" box at the end of the How to use tab. Icons are
@@ -7,7 +7,7 @@
  * decorative (aria-hidden) and the button uses the admin color scheme.
  */
 
-.accessible-sitemap-support {
+.parich-sitemap-support {
 	display: flex;
 	gap: 16px 20px;
 	align-items: flex-start;
@@ -20,7 +20,7 @@
 	border-radius: 4px;
 }
 
-.accessible-sitemap-support__icon.dashicons {
+.parich-sitemap-support__icon.dashicons {
 	flex: none;
 	width: 48px;
 	height: 48px;
@@ -32,21 +32,21 @@
 	border-radius: 50%;
 }
 
-.accessible-sitemap-support h2 {
+.parich-sitemap-support h2 {
 	margin: 0 0 8px;
 }
 
-.accessible-sitemap-support p {
+.parich-sitemap-support p {
 	margin: 0 0 12px;
 }
 
-.accessible-sitemap-support p:last-child {
+.parich-sitemap-support p:last-child {
 	margin-bottom: 0;
 }
 
 @media (max-width: 600px) {
 
-	.accessible-sitemap-support {
+	.parich-sitemap-support {
 		flex-direction: column;
 	}
 }

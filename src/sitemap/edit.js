@@ -14,33 +14,36 @@ import metadata from './block.json';
 import './editor.scss';
 
 /**
- * Public content types and taxonomies, printed by PHP (accessible_sitemap_editor_data()).
+ * Public content types and taxonomies, printed by PHP (parich_sitemap_editor_data()).
  * The REST API would leave out types registered without show_in_rest.
  */
 const {
 	postTypes = [],
 	taxonomies = [],
 	postsPerCategory: postsPerCategorySetting = 0,
-} = window.accessibleSitemapEditor || {};
+} = window.parichSitemapEditor || {};
 
 const SECTION_OPTIONS = [
 	{
 		value: '',
-		label: __( 'Everything (full sitemap)', 'accessible-html-sitemap' ),
+		label: __( 'Everything (full sitemap)', 'parich-accessible-sitemap' ),
 	},
-	{ value: 'page', label: __( 'Pages', 'accessible-html-sitemap' ) },
+	{ value: 'page', label: __( 'Pages', 'parich-accessible-sitemap' ) },
 	{
 		value: 'post',
-		label: __( 'Posts by category', 'accessible-html-sitemap' ),
+		label: __( 'Posts by category', 'parich-accessible-sitemap' ),
 	},
-	{ value: 'category', label: __( 'Categories', 'accessible-html-sitemap' ) },
-	{ value: 'tag', label: __( 'Tags', 'accessible-html-sitemap' ) },
-	{ value: 'archive', label: __( 'Archives', 'accessible-html-sitemap' ) },
-	{ value: 'author', label: __( 'Authors', 'accessible-html-sitemap' ) },
+	{
+		value: 'category',
+		label: __( 'Categories', 'parich-accessible-sitemap' ),
+	},
+	{ value: 'tag', label: __( 'Tags', 'parich-accessible-sitemap' ) },
+	{ value: 'archive', label: __( 'Archives', 'parich-accessible-sitemap' ) },
+	{ value: 'author', label: __( 'Authors', 'parich-accessible-sitemap' ) },
 ];
 
 /**
- * Sort values each list understands (see Accessible_Sitemap_Renderer::SORT_VALUES).
+ * Sort values each list understands (see Parich_Sitemap_Renderer::SORT_VALUES).
  * The first option is the list's own default order.
  *
  * @param {string} only Value of the "Show" setting.
@@ -53,20 +56,20 @@ function getSortOptions( only ) {
 				value: '',
 				label: __(
 					'Menu order, then title',
-					'accessible-html-sitemap'
+					'parich-accessible-sitemap'
 				),
 			},
 			{
 				value: 'post_title',
-				label: __( 'Title', 'accessible-html-sitemap' ),
+				label: __( 'Title', 'parich-accessible-sitemap' ),
 			},
 			{
 				value: 'post_date',
-				label: __( 'Date published', 'accessible-html-sitemap' ),
+				label: __( 'Date published', 'parich-accessible-sitemap' ),
 			},
 			{
 				value: 'post_modified',
-				label: __( 'Date modified', 'accessible-html-sitemap' ),
+				label: __( 'Date modified', 'parich-accessible-sitemap' ),
 			},
 		];
 	}
@@ -76,46 +79,46 @@ function getSortOptions( only ) {
 				value: '',
 				label: __(
 					'Categories by name, newest posts first',
-					'accessible-html-sitemap'
+					'parich-accessible-sitemap'
 				),
 			},
 			{
 				value: 'count',
 				label: __(
 					'Categories by number of posts',
-					'accessible-html-sitemap'
+					'parich-accessible-sitemap'
 				),
 			},
 			{
 				value: 'post_name',
-				label: __( 'Posts by name', 'accessible-html-sitemap' ),
+				label: __( 'Posts by name', 'parich-accessible-sitemap' ),
 			},
 			{
 				value: 'post_date',
-				label: __( 'Posts by date', 'accessible-html-sitemap' ),
+				label: __( 'Posts by date', 'parich-accessible-sitemap' ),
 			},
 		];
 	}
 	if ( only === 'category' ) {
 		return [
-			{ value: '', label: __( 'Name', 'accessible-html-sitemap' ) },
+			{ value: '', label: __( 'Name', 'parich-accessible-sitemap' ) },
 			{
 				value: 'count',
-				label: __( 'Number of posts', 'accessible-html-sitemap' ),
+				label: __( 'Number of posts', 'parich-accessible-sitemap' ),
 			},
-			{ value: 'slug', label: __( 'Slug', 'accessible-html-sitemap' ) },
+			{ value: 'slug', label: __( 'Slug', 'parich-accessible-sitemap' ) },
 		];
 	}
 	if ( only === 'author' ) {
 		return [
-			{ value: '', label: __( 'Name', 'accessible-html-sitemap' ) },
+			{ value: '', label: __( 'Name', 'parich-accessible-sitemap' ) },
 			{
 				value: 'post_count',
-				label: __( 'Number of posts', 'accessible-html-sitemap' ),
+				label: __( 'Number of posts', 'parich-accessible-sitemap' ),
 			},
 			{
 				value: 'registered',
-				label: __( 'Date registered', 'accessible-html-sitemap' ),
+				label: __( 'Date registered', 'parich-accessible-sitemap' ),
 			},
 		];
 	}
@@ -123,15 +126,15 @@ function getSortOptions( only ) {
 		return [
 			{
 				value: '',
-				label: __( 'Newest first', 'accessible-html-sitemap' ),
+				label: __( 'Newest first', 'parich-accessible-sitemap' ),
 			},
 			{
 				value: 'post_title',
-				label: __( 'Title', 'accessible-html-sitemap' ),
+				label: __( 'Title', 'parich-accessible-sitemap' ),
 			},
 			{
 				value: 'menu_order',
-				label: __( 'Menu order', 'accessible-html-sitemap' ),
+				label: __( 'Menu order', 'parich-accessible-sitemap' ),
 			},
 		];
 	}
@@ -156,17 +159,20 @@ function getRenamableSections( only ) {
 const HEADING_OPTIONS = [ 2, 3, 4, 5, 6 ].map( ( level ) => ( {
 	value: String( level ),
 	/* translators: %d: heading level, 2 to 6 */
-	label: sprintf( __( 'Heading %d', 'accessible-html-sitemap' ), level ),
+	label: sprintf( __( 'Heading %d', 'parich-accessible-sitemap' ), level ),
 } ) );
 
 function EmptyPreview() {
 	return (
 		<Placeholder
 			icon="list-view"
-			label={ __( 'Accessible HTML Sitemap', 'accessible-html-sitemap' ) }
+			label={ __(
+				'Parich Accessible Sitemap',
+				'parich-accessible-sitemap'
+			) }
 			instructions={ __(
 				'There is nothing to list with these settings.',
-				'accessible-html-sitemap'
+				'parich-accessible-sitemap'
 			) }
 		/>
 	);
@@ -192,11 +198,13 @@ export default function Edit( { attributes, setAttributes } ) {
 	return (
 		<>
 			<InspectorControls>
-				<PanelBody title={ __( 'Content', 'accessible-html-sitemap' ) }>
+				<PanelBody
+					title={ __( 'Content', 'parich-accessible-sitemap' ) }
+				>
 					<SelectControl
 						__next40pxDefaultSize
 						__nextHasNoMarginBottom
-						label={ __( 'Show', 'accessible-html-sitemap' ) }
+						label={ __( 'Show', 'parich-accessible-sitemap' ) }
 						value={ only }
 						options={ [
 							...SECTION_OPTIONS,
@@ -218,7 +226,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Order by',
-								'accessible-html-sitemap'
+								'parich-accessible-sitemap'
 							) }
 							value={ sort }
 							options={ sortOptions }
@@ -233,7 +241,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Direction',
-								'accessible-html-sitemap'
+								'parich-accessible-sitemap'
 							) }
 							value={ order }
 							options={ [
@@ -241,21 +249,21 @@ export default function Edit( { attributes, setAttributes } ) {
 									value: '',
 									label: __(
 										'Default',
-										'accessible-html-sitemap'
+										'parich-accessible-sitemap'
 									),
 								},
 								{
 									value: 'ASC',
 									label: __(
 										'Ascending',
-										'accessible-html-sitemap'
+										'parich-accessible-sitemap'
 									),
 								},
 								{
 									value: 'DESC',
 									label: __(
 										'Descending',
-										'accessible-html-sitemap'
+										'parich-accessible-sitemap'
 									),
 								},
 							] }
@@ -273,13 +281,13 @@ export default function Edit( { attributes, setAttributes } ) {
 							max={ 1000 }
 							label={ __(
 								'Posts per category',
-								'accessible-html-sitemap'
+								'parich-accessible-sitemap'
 							) }
 							help={ sprintf(
 								/* translators: %d: posts per category in the plugin settings (0 = all) */
 								__(
 									'Empty: use the plugin setting (%d). 0: every post.',
-									'accessible-html-sitemap'
+									'parich-accessible-sitemap'
 								),
 								postsPerCategorySetting
 							) }
@@ -312,11 +320,11 @@ export default function Edit( { attributes, setAttributes } ) {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Collapsible categories',
-								'accessible-html-sitemap'
+								'parich-accessible-sitemap'
 							) }
 							help={ __(
 								'Visitors can fold each category away. Expanded is the safer start: search in page and screen readers reach every link.',
-								'accessible-html-sitemap'
+								'parich-accessible-sitemap'
 							) }
 							value={ collapsible }
 							options={ [
@@ -324,21 +332,21 @@ export default function Edit( { attributes, setAttributes } ) {
 									value: '',
 									label: __(
 										'Off',
-										'accessible-html-sitemap'
+										'parich-accessible-sitemap'
 									),
 								},
 								{
 									value: 'open',
 									label: __(
 										'Expanded',
-										'accessible-html-sitemap'
+										'parich-accessible-sitemap'
 									),
 								},
 								{
 									value: 'closed',
 									label: __(
 										'Collapsed',
-										'accessible-html-sitemap'
+										'parich-accessible-sitemap'
 									),
 								},
 							] }
@@ -352,11 +360,11 @@ export default function Edit( { attributes, setAttributes } ) {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Private pages only',
-								'accessible-html-sitemap'
+								'parich-accessible-sitemap'
 							) }
 							help={ __(
 								'Shown only to users who can read private pages.',
-								'accessible-html-sitemap'
+								'parich-accessible-sitemap'
 							) }
 							checked={ onlyPrivate }
 							onChange={ ( value ) =>
@@ -366,13 +374,13 @@ export default function Edit( { attributes, setAttributes } ) {
 					) }
 				</PanelBody>
 				<PanelBody
-					title={ __( 'Headings', 'accessible-html-sitemap' ) }
+					title={ __( 'Headings', 'parich-accessible-sitemap' ) }
 				>
 					<ToggleControl
 						__nextHasNoMarginBottom
 						label={ __(
 							'Section headings',
-							'accessible-html-sitemap'
+							'parich-accessible-sitemap'
 						) }
 						checked={ displayTitle }
 						onChange={ ( value ) =>
@@ -386,11 +394,11 @@ export default function Edit( { attributes, setAttributes } ) {
 								__nextHasNoMarginBottom
 								label={ __(
 									'Heading level',
-									'accessible-html-sitemap'
+									'parich-accessible-sitemap'
 								) }
 								help={ __(
 									'Pick the level that follows the headings above the sitemap on the page.',
-									'accessible-html-sitemap'
+									'parich-accessible-sitemap'
 								) }
 								value={ String( headingLevel ) }
 								options={ HEADING_OPTIONS }
@@ -404,11 +412,11 @@ export default function Edit( { attributes, setAttributes } ) {
 								__nextHasNoMarginBottom
 								label={ __(
 									'“On this page” links',
-									'accessible-html-sitemap'
+									'parich-accessible-sitemap'
 								) }
 								help={ __(
 									'Shown when there are two or more sections.',
-									'accessible-html-sitemap'
+									'parich-accessible-sitemap'
 								) }
 								checked={ showToc }
 								onChange={ ( value ) =>
@@ -422,7 +430,7 @@ export default function Edit( { attributes, setAttributes } ) {
 							__nextHasNoMarginBottom
 							label={ __(
 								'Show “Category:” before category names',
-								'accessible-html-sitemap'
+								'parich-accessible-sitemap'
 							) }
 							checked={ displayCategoryTitleWording }
 							onChange={ ( value ) =>
@@ -437,7 +445,7 @@ export default function Edit( { attributes, setAttributes } ) {
 					<PanelBody
 						title={ __(
 							'Section titles',
-							'accessible-html-sitemap'
+							'parich-accessible-sitemap'
 						) }
 						initialOpen={ false }
 					>
@@ -449,7 +457,7 @@ export default function Edit( { attributes, setAttributes } ) {
 								label={ section.label }
 								help={ __(
 									'Leave empty to use the default title.',
-									'accessible-html-sitemap'
+									'parich-accessible-sitemap'
 								) }
 								placeholder={ section.label }
 								value={ sectionTitles[ section.value ] || '' }

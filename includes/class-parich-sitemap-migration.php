@@ -8,21 +8,21 @@
  * the activation hook. It only fills settings that are missing and never
  * deletes the original plugin's options.
  *
- * @package Accessible_HTML_Sitemap
+ * @package Parich_Accessible_Sitemap
  */
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class Accessible_Sitemap_Migration
+class Parich_Sitemap_Migration
 {
 	/**
 	 * Stored once setup has run. Bump DATA_VERSION when a release adds a setting,
 	 * so existing sites get it stored with its default:
-	 * 1 — first release; 2 — accessible_sitemap_buddhist_era; 3 — accessible_sitemap_posts_per_category.
+	 * 1 — first release; 2 — parich_sitemap_buddhist_era; 3 — parich_sitemap_posts_per_category.
 	 */
-	const VERSION_OPTION = 'accessible_sitemap_data_version';
+	const VERSION_OPTION = 'parich_sitemap_data_version';
 	const DATA_VERSION = '3';
 
 	public static function maybe_run()
@@ -35,7 +35,7 @@ class Accessible_Sitemap_Migration
 		// WP Sitemap Page's settings are imported on the first run only; later
 		// versions just add the settings that did not exist yet.
 		$legacy = false === $version ? self::legacy_settings() : null;
-		foreach (($legacy ?? array()) + Accessible_Sitemap_Settings::defaults() as $name => $value) {
+		foreach (($legacy ?? array()) + Parich_Sitemap_Settings::defaults() as $name => $value) {
 			// Explicit default: once register_setting() has run (admin_init, before the
 			// activation hook), get_option() without one returns the registered default
 			// and a missing option would look present.
@@ -44,7 +44,7 @@ class Accessible_Sitemap_Migration
 			}
 		}
 		if (false === $version) {
-			add_option('accessible_sitemap_migrated_from', $legacy ? 'wp-sitemap-page' : 'defaults');
+			add_option('parich_sitemap_migrated_from', $legacy ? 'wp-sitemap-page' : 'defaults');
 		}
 		update_option(self::VERSION_OPTION, self::DATA_VERSION);
 	}
@@ -80,7 +80,7 @@ class Accessible_Sitemap_Migration
 				continue;
 			}
 			if (preg_match('/^wsp_exclude_cpt_(.+)$/', $name, $matches)) {
-				if (in_array($matches[1], Accessible_Sitemap_Settings::SECTIONS, true)) {
+				if (in_array($matches[1], Parich_Sitemap_Settings::SECTIONS, true)) {
 					$sections[] = $matches[1];
 				} else {
 					$post_types[] = $matches[1];
@@ -93,14 +93,14 @@ class Accessible_Sitemap_Migration
 		$template = isset($rows['wsp_posts_by_category']) ? (string) $rows['wsp_posts_by_category']->option_value : '';
 
 		return array(
-			'accessible_sitemap_excluded_sections' => Accessible_Sitemap_Settings::sanitize_sections($sections),
-			'accessible_sitemap_excluded_post_types' => Accessible_Sitemap_Settings::sanitize_keys($post_types),
-			'accessible_sitemap_excluded_taxonomies' => Accessible_Sitemap_Settings::sanitize_keys($taxonomies),
-			'accessible_sitemap_exclude_pages' => Accessible_Sitemap_Settings::sanitize_id_list(isset($rows['wsp_exclude_pages']) ? $rows['wsp_exclude_pages']->option_value : ''),
-			'accessible_sitemap_exclude_password_protected' => $is_on('wsp_is_exclude_password_protected'),
-			'accessible_sitemap_add_nofollow' => $is_on('wsp_add_nofollow'),
-			'accessible_sitemap_display_post_multiple_times' => $is_on('wsp_is_display_post_multiple_time'),
-			'accessible_sitemap_post_template' => Accessible_Sitemap_Settings::sanitize_post_template($template),
+			'parich_sitemap_excluded_sections' => Parich_Sitemap_Settings::sanitize_sections($sections),
+			'parich_sitemap_excluded_post_types' => Parich_Sitemap_Settings::sanitize_keys($post_types),
+			'parich_sitemap_excluded_taxonomies' => Parich_Sitemap_Settings::sanitize_keys($taxonomies),
+			'parich_sitemap_exclude_pages' => Parich_Sitemap_Settings::sanitize_id_list(isset($rows['wsp_exclude_pages']) ? $rows['wsp_exclude_pages']->option_value : ''),
+			'parich_sitemap_exclude_password_protected' => $is_on('wsp_is_exclude_password_protected'),
+			'parich_sitemap_add_nofollow' => $is_on('wsp_add_nofollow'),
+			'parich_sitemap_display_post_multiple_times' => $is_on('wsp_is_display_post_multiple_time'),
+			'parich_sitemap_post_template' => Parich_Sitemap_Settings::sanitize_post_template($template),
 		);
 	}
 }

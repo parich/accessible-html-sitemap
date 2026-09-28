@@ -4,9 +4,9 @@ return array(
 	'sitemap' => array(
 		'$schema' => 'https://schemas.wp.org/trunk/block.json',
 		'apiVersion' => 3,
-		'name' => 'accessible-html-sitemap/sitemap',
+		'name' => 'parich-accessible-sitemap/sitemap',
 		'version' => '1.0.0',
-		'title' => 'Accessible HTML Sitemap',
+		'title' => 'Parich Accessible Sitemap',
 		'category' => 'widgets',
 		'icon' => 'list-view',
 		'description' => 'An accessible list of the site\'s pages, posts by category and other content, with jump links to each section.',
@@ -89,7 +89,7 @@ return array(
 				'padding' => true
 			)
 		),
-		'textdomain' => 'accessible-html-sitemap',
+		'textdomain' => 'parich-accessible-sitemap',
 		'editorScript' => 'file:./index.js',
 		'editorStyle' => 'file:./index.css',
 		'style' => 'file:./style-index.css'

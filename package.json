@@ -1,18 +1,17 @@
 {
-	"name": "accessible-html-sitemap",
+	"name": "parich-accessible-sitemap",
 	"version": "1.0.0",
 	"description": "Accessible (WCAG 2.1 AA) HTML sitemap with Thai language support.",
 	"author": "Parich Suriya",
 	"license": "GPL-2.0-or-later",
 	"main": "build/index.js",
 	"files": [
-		"accessible-html-sitemap.php",
+		"parich-accessible-sitemap.php",
 		"uninstall.php",
 		"readme.txt",
 		"admin",
 		"build",
 		"includes",
-		"languages",
 		"src"
 	],
 	"scripts": {

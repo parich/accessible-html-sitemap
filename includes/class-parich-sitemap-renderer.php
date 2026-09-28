@@ -6,14 +6,14 @@
  * (pages, archives, authors) go through wp_kses_post(), which keeps their classes
  * and aria-current but strips anything unsafe stored in titles or names.
  *
- * @package Accessible_HTML_Sitemap
+ * @package Parich_Accessible_Sitemap
  */
 
 if (!defined('ABSPATH')) {
 	exit;
 }
 
-class Accessible_Sitemap_Renderer
+class Parich_Sitemap_Renderer
 {
 	/**
 	 * Values accepted by the "sort" attribute: the union of what pages, posts,
@@ -62,7 +62,7 @@ class Accessible_Sitemap_Renderer
 	const TERM_SORT_NOT_BY_NAME = array('term_id', 'id', 'slug', 'term_group', 'count', 'parent');
 
 	/** Increases whenever posts, terms or users change; cached sitemaps of an older version are rebuilt. */
-	const CACHE_VERSION_OPTION = 'accessible_sitemap_cache_version';
+	const CACHE_VERSION_OPTION = 'parich_sitemap_cache_version';
 
 	/** Counts rendered sitemaps so every id on the page stays unique. */
 	private static $instance = 0;
@@ -94,7 +94,7 @@ class Accessible_Sitemap_Renderer
 	 * @param string $wrapper_attributes Attributes of the wrapper element, already escaped.
 	 * @return string HTML, or '' when there is nothing to list.
 	 */
-	public static function render($atts = array(), $wrapper_attributes = 'class="accessible-sitemap"')
+	public static function render($atts = array(), $wrapper_attributes = 'class="parich-sitemap"')
 	{
 		$renderer = new self(self::parse_args($atts), self::get_settings());
 		return $renderer->build($wrapper_attributes);
@@ -119,7 +119,7 @@ class Accessible_Sitemap_Renderer
 				'collapsible' => '',
 			) + array_fill_keys(self::TITLE_ATTRIBUTES, ''),
 			(array) $atts,
-			'accessible_sitemap'
+			'parich_sitemap'
 		);
 
 		$order = strtoupper(trim((string) $atts['order']));
@@ -161,22 +161,22 @@ class Accessible_Sitemap_Renderer
 
 	public static function get_settings()
 	{
-		$defaults = Accessible_Sitemap_Settings::defaults();
+		$defaults = Parich_Sitemap_Settings::defaults();
 		$get = function ($name) use ($defaults) {
 			return get_option($name, $defaults[$name]);
 		};
 		return array(
 			// Parts of the full sitemap switched off: any of page, post, archive, author.
-			'excluded_sections' => (array) $get('accessible_sitemap_excluded_sections'),
-			'excluded_post_types' => (array) $get('accessible_sitemap_excluded_post_types'),
-			'excluded_taxonomies' => (array) $get('accessible_sitemap_excluded_taxonomies'),
-			'exclude_ids' => wp_parse_id_list($get('accessible_sitemap_exclude_pages')),
-			'exclude_password_protected' => (bool) $get('accessible_sitemap_exclude_password_protected'),
-			'nofollow' => (bool) $get('accessible_sitemap_add_nofollow'),
-			'post_multiple_times' => (bool) $get('accessible_sitemap_display_post_multiple_times'),
-			'post_template' => (string) $get('accessible_sitemap_post_template'),
-			'buddhist_era' => (bool) $get('accessible_sitemap_buddhist_era'),
-			'posts_per_category' => max(0, (int) $get('accessible_sitemap_posts_per_category')),
+			'excluded_sections' => (array) $get('parich_sitemap_excluded_sections'),
+			'excluded_post_types' => (array) $get('parich_sitemap_excluded_post_types'),
+			'excluded_taxonomies' => (array) $get('parich_sitemap_excluded_taxonomies'),
+			'exclude_ids' => wp_parse_id_list($get('parich_sitemap_exclude_pages')),
+			'exclude_password_protected' => (bool) $get('parich_sitemap_exclude_password_protected'),
+			'nofollow' => (bool) $get('parich_sitemap_add_nofollow'),
+			'post_multiple_times' => (bool) $get('parich_sitemap_display_post_multiple_times'),
+			'post_template' => (string) $get('parich_sitemap_post_template'),
+			'buddhist_era' => (bool) $get('parich_sitemap_buddhist_era'),
+			'posts_per_category' => max(0, (int) $get('parich_sitemap_posts_per_category')),
 		);
 	}
 
@@ -238,7 +238,7 @@ class Accessible_Sitemap_Renderer
 	private function cached_sections()
 	{
 		// Private pages depend on who is looking: never cached.
-		$use_cache = !$this->args['only_private'] && apply_filters('accessible_sitemap_use_cache', true, $this->args);
+		$use_cache = !$this->args['only_private'] && apply_filters('parich_sitemap_use_cache', true, $this->args);
 		if (!$use_cache) {
 			return $this->collect_sections();
 		}
@@ -255,7 +255,7 @@ class Accessible_Sitemap_Renderer
 		}
 
 		$sections = $this->collect_sections();
-		set_transient($key, array('version' => $version, 'data' => self::pack($sections)), (int) apply_filters('accessible_sitemap_cache_ttl', DAY_IN_SECONDS));
+		set_transient($key, array('version' => $version, 'data' => self::pack($sections)), (int) apply_filters('parich_sitemap_cache_ttl', DAY_IN_SECONDS));
 		return $sections;
 	}
 
@@ -307,7 +307,7 @@ class Accessible_Sitemap_Renderer
 	 */
 	private function cache_key()
 	{
-		return 'accessible_sitemap_' . md5((string) wp_json_encode(array(
+		return 'parich_sitemap_' . md5((string) wp_json_encode(array(
 			self::CACHE_SCHEMA,
 			filemtime(__FILE__), // A plugin update rebuilds the cache.
 			$this->args,
@@ -348,7 +348,7 @@ class Accessible_Sitemap_Renderer
 	 *   <nav aria-label="Sitemap">            navigation landmark (1.3.1, 2.4.1)
 	 *     <p id=…-toc>On this page:</p>       table of contents when there are 2+ headed sections (2.4.1)
 	 *     <ul aria-labelledby=…-toc>…</ul>
-	 *     <div class="accessible-sitemap__section">  one per section, not <section> (no extra landmarks)
+	 *     <div class="parich-sitemap__section">  one per section, not <section> (no extra landmarks)
 	 *       <hN id=…>Pages</hN>               level from heading_level (2.4.6)
 	 *       <ul>…</ul>                        nested lists carry the hierarchy (1.3.1)
 	 *       <p><a href=#…-toc>Back to contents</a></p>  with the table of contents only
@@ -360,22 +360,22 @@ class Accessible_Sitemap_Renderer
 			return '';
 		}
 
-		$prefix = 'accessible-sitemap-' . (++self::$instance);
+		$prefix = 'parich-sitemap-' . (++self::$instance);
 		$level = $this->args['heading_level'];
 		$show_titles = $this->args['display_title'];
 
 		$label = $this->args['only'] === ''
-			? __('Sitemap', 'accessible-html-sitemap')
+			? __('Sitemap', 'parich-accessible-sitemap')
 			/* translators: %s: section title, e.g. "Pages" */
-			: sprintf(__('Sitemap: %s', 'accessible-html-sitemap'), $sections[0]['title']);
+			: sprintf(__('Sitemap: %s', 'parich-accessible-sitemap'), $sections[0]['title']);
 
 		$html = '<nav ' . $wrapper_attributes . ' aria-label="' . esc_attr($label) . "\">\n";
 
 		$toc = $show_titles && $this->args['toc'] && count($sections) > 1;
 		if ($toc) {
-			$html .= '<p class="accessible-sitemap__toc-label" id="' . esc_attr($prefix . '-toc') . '">' . esc_html__('On this page:', 'accessible-html-sitemap') . "</p>\n";
+			$html .= '<p class="parich-sitemap__toc-label" id="' . esc_attr($prefix . '-toc') . '">' . esc_html__('On this page:', 'parich-accessible-sitemap') . "</p>\n";
 			// role="list" keeps list semantics in Safari/VoiceOver when list-style is removed.
-			$html .= '<ul class="accessible-sitemap__toc" role="list" aria-labelledby="' . esc_attr($prefix . '-toc') . "\">\n";
+			$html .= '<ul class="parich-sitemap__toc" role="list" aria-labelledby="' . esc_attr($prefix . '-toc') . "\">\n";
 			foreach ($sections as $section) {
 				$html .= '<li><a href="#' . esc_attr($this->section_id($prefix, $section)) . '">' . esc_html($section['title']) . "</a></li>\n";
 			}
@@ -384,21 +384,21 @@ class Accessible_Sitemap_Renderer
 
 		foreach ($sections as $section) {
 			$key = sanitize_html_class($section['key']);
-			$html .= '<div class="accessible-sitemap__section accessible-sitemap__section--' . esc_attr($key) . "\">\n";
+			$html .= '<div class="parich-sitemap__section parich-sitemap__section--' . esc_attr($key) . "\">\n";
 			if ($show_titles) {
 				$html .= sprintf(
-					'<h%1$d class="accessible-sitemap__heading" id="%2$s">%3$s</h%1$d>' . "\n",
+					'<h%1$d class="parich-sitemap__heading" id="%2$s">%3$s</h%1$d>' . "\n",
 					$level,
 					esc_attr($this->section_id($prefix, $section)),
 					esc_html($section['title'])
 				);
 			}
-			$html .= '<ul class="accessible-sitemap__list accessible-sitemap__list--' . esc_attr($key) . "\">\n";
+			$html .= '<ul class="parich-sitemap__list parich-sitemap__list--' . esc_attr($key) . "\">\n";
 			$html .= $section['items'];
 			$html .= "</ul>\n";
 			if ($toc) {
 				// Back to the other sections from the end of a long one, without scrolling (2.4.1).
-				$html .= '<p class="accessible-sitemap__back"><a href="#' . esc_attr($prefix . '-toc') . '">' . esc_html__('Back to contents', 'accessible-html-sitemap') . "</a></p>\n";
+				$html .= '<p class="parich-sitemap__back"><a href="#' . esc_attr($prefix . '-toc') . '">' . esc_html__('Back to contents', 'parich-accessible-sitemap') . "</a></p>\n";
 			}
 			$html .= "</div>\n";
 		}
@@ -523,7 +523,7 @@ class Accessible_Sitemap_Renderer
 			$menu_order = null === $sort ? function ($page) {
 				return (int) $page->menu_order;
 			} : null;
-			return Accessible_Sitemap_Thai_Sort::sort((array) $pages, function ($page) {
+			return Parich_Sitemap_Thai_Sort::sort((array) $pages, function ($page) {
 				return $page->post_title;
 			}, false, $menu_order);
 		};
@@ -535,7 +535,7 @@ class Accessible_Sitemap_Renderer
 			remove_filter('get_pages', $thai_order);
 		}
 
-		return $this->section('page', __('Pages', 'accessible-html-sitemap'), wp_kses_post($list));
+		return $this->section('page', __('Pages', 'parich-accessible-sitemap'), wp_kses_post($list));
 	}
 
 	/**
@@ -553,7 +553,7 @@ class Accessible_Sitemap_Renderer
 		if (null !== $sort && in_array(strtolower($sort), self::TERM_SORT_NOT_BY_NAME, true)) {
 			return $terms;
 		}
-		return Accessible_Sitemap_Thai_Sort::sort($terms, function ($term) {
+		return Parich_Sitemap_Thai_Sort::sort($terms, function ($term) {
 			return $term->name;
 		});
 	}
@@ -621,7 +621,7 @@ class Accessible_Sitemap_Renderer
 			}
 		});
 
-		return $this->section('post', __('Posts by category', 'accessible-html-sitemap'), $this->category_items($children, 0, $listed, $lines, $placed));
+		return $this->section('post', __('Posts by category', 'parich-accessible-sitemap'), $this->category_items($children, 0, $listed, $lines, $placed));
 	}
 
 	/**
@@ -639,19 +639,19 @@ class Accessible_Sitemap_Renderer
 			$url = esc_url(get_category_link($id));
 			$link = '<a href="' . $url . '">' . esc_html($category->name) . '</a>';
 			/* translators: %s: category name, linked */
-			$title = $this->args['category_prefix'] ? sprintf(esc_html__('Category: %s', 'accessible-html-sitemap'), $link) : $link;
+			$title = $this->args['category_prefix'] ? sprintf(esc_html__('Category: %s', 'parich-accessible-sitemap'), $link) : $link;
 
 			$posts = $listed[$id] ?? array();
 			$inner = '';
 			foreach ($posts as $post_id) {
-				$inner .= '<li class="accessible-sitemap__post">' . $lines[$post_id] . "</li>\n";
+				$inner .= '<li class="parich-sitemap__post">' . $lines[$post_id] . "</li>\n";
 			}
 			$hidden = count($placed[$id] ?? array()) - count($posts);
 			if ($hidden > 0) {
 				// The link names the category, so it makes sense out of context (WCAG 2.4.4).
 				/* translators: 1: number of posts not listed, 2: category name */
-				$more = sprintf(__('%1$d more in %2$s', 'accessible-html-sitemap'), $hidden, $category->name);
-				$inner .= '<li class="accessible-sitemap__more"><a href="' . $url . '">' . esc_html($more) . "</a></li>\n";
+				$more = sprintf(__('%1$d more in %2$s', 'parich-accessible-sitemap'), $hidden, $category->name);
+				$inner .= '<li class="parich-sitemap__more"><a href="' . $url . '">' . esc_html($more) . "</a></li>\n";
 			}
 			$inner .= $this->category_items($children, $id, $listed, $lines, $placed);
 
@@ -663,9 +663,9 @@ class Accessible_Sitemap_Renderer
 			}
 
 			// A <span> styled bold: the nested list already conveys the structure, <strong> would add false emphasis.
-			$html .= '<li class="accessible-sitemap__category"><span class="accessible-sitemap__category-title">' . $title . '</span>';
+			$html .= '<li class="parich-sitemap__category"><span class="parich-sitemap__category-title">' . $title . '</span>';
 			if ($inner !== '') {
-				$html .= "\n<ul class=\"accessible-sitemap__list\">\n" . $inner . '</ul>';
+				$html .= "\n<ul class=\"parich-sitemap__list\">\n" . $inner . '</ul>';
 			}
 			$html .= "</li>\n";
 		}
@@ -696,16 +696,16 @@ class Accessible_Sitemap_Renderer
 	{
 		$name = esc_html($category->name);
 		/* translators: %s: category name */
-		$title = $this->args['category_prefix'] ? sprintf(esc_html__('Category: %s', 'accessible-html-sitemap'), $name) : $name;
+		$title = $this->args['category_prefix'] ? sprintf(esc_html__('Category: %s', 'parich-accessible-sitemap'), $name) : $name;
 		/* translators: %d: number of posts in the category and its sub-categories */
-		$count = sprintf(_n('(%d post)', '(%d posts)', $total, 'accessible-html-sitemap'), $total);
+		$count = sprintf(_n('(%d post)', '(%d posts)', $total, 'parich-accessible-sitemap'), $total);
 		/* translators: %s: category name */
-		$all = sprintf(__('All posts in %s', 'accessible-html-sitemap'), $category->name);
+		$all = sprintf(__('All posts in %s', 'parich-accessible-sitemap'), $category->name);
 
-		return '<li class="accessible-sitemap__category"><details' . ('open' === $this->args['collapsible'] ? ' open' : '') . ">\n"
-			. '<summary><span class="accessible-sitemap__category-title">' . $title . '</span> <span class="accessible-sitemap__count">' . esc_html($count) . "</span></summary>\n"
-			. "<ul class=\"accessible-sitemap__list\">\n"
-			. '<li class="accessible-sitemap__category-link"><a href="' . $url . '">' . esc_html($all) . "</a></li>\n"
+		return '<li class="parich-sitemap__category"><details' . ('open' === $this->args['collapsible'] ? ' open' : '') . ">\n"
+			. '<summary><span class="parich-sitemap__category-title">' . $title . '</span> <span class="parich-sitemap__count">' . esc_html($count) . "</span></summary>\n"
+			. "<ul class=\"parich-sitemap__list\">\n"
+			. '<li class="parich-sitemap__category-link"><a href="' . $url . '">' . esc_html($all) . "</a></li>\n"
 			. $inner
 			. "</ul>\n</details></li>\n";
 	}
@@ -727,7 +727,7 @@ class Accessible_Sitemap_Renderer
 		// Sorted by title: Thai titles in dictionary order, same direction (posts default to DESC).
 		if (isset($query['orderby']) && in_array($query['orderby'], array('title', 'post_title'), true)) {
 			$titles = $this->post_titles($ids);
-			$ids = Accessible_Sitemap_Thai_Sort::sort($ids, function ($id) use ($titles) {
+			$ids = Parich_Sitemap_Thai_Sort::sort($ids, function ($id) use ($titles) {
 				return $titles[$id] ?? '';
 			}, 'ASC' !== strtoupper($query['order'] ?? 'DESC'));
 		}
@@ -897,7 +897,7 @@ class Accessible_Sitemap_Renderer
 		$title = trim(wp_strip_all_tags(apply_filters('the_title', $post->post_title, $post->ID))); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound
 		if ($title === '') {
 			/* translators: %d: post ID (same wording as the WordPress page list) */
-			$title = sprintf(__('#%d (no title)', 'accessible-html-sitemap'), $post->ID);
+			$title = sprintf(__('#%d (no title)', 'parich-accessible-sitemap'), $post->ID);
 		}
 		return $title;
 	}
@@ -913,7 +913,7 @@ class Accessible_Sitemap_Renderer
 		foreach ($this->thai_terms(get_categories($args), $this->args['sort']) as $category) {
 			$items .= '<li><a href="' . esc_url(get_category_link($category->term_id)) . '">' . esc_html($category->name) . "</a></li>\n";
 		}
-		return $this->section('category', __('Categories', 'accessible-html-sitemap'), $items);
+		return $this->section('category', __('Categories', 'parich-accessible-sitemap'), $items);
 	}
 
 	private function section_tags()
@@ -922,7 +922,7 @@ class Accessible_Sitemap_Renderer
 		foreach ($this->thai_terms(get_tags()) as $tag) {
 			$items .= '<li><a href="' . esc_url(get_tag_link($tag->term_id)) . '">' . esc_html($tag->name) . "</a></li>\n";
 		}
-		return $this->section('tag', __('Tags', 'accessible-html-sitemap'), $items);
+		return $this->section('tag', __('Tags', 'parich-accessible-sitemap'), $items);
 	}
 
 	private function section_archives()
@@ -936,7 +936,7 @@ class Accessible_Sitemap_Renderer
 				}, $link[2]) . $link[3];
 			}, $items);
 		}
-		return $this->section('archive', __('Archives', 'accessible-html-sitemap'), $items);
+		return $this->section('archive', __('Archives', 'parich-accessible-sitemap'), $items);
 	}
 
 	private function section_authors()
@@ -945,7 +945,7 @@ class Accessible_Sitemap_Renderer
 		if ($this->args['sort']) {
 			$args['orderby'] = $this->args['sort'];
 		}
-		return $this->section('author', __('Authors', 'accessible-html-sitemap'), wp_kses_post((string) wp_list_authors($args)));
+		return $this->section('author', __('Authors', 'parich-accessible-sitemap'), wp_kses_post((string) wp_list_authors($args)));
 	}
 
 	/**

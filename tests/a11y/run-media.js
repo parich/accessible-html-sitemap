@@ -27,7 +27,7 @@ const COLLAPSIBLE_PAGE = path.join( OUT, '10-back-links-collapsible.html' );
 
 // The first tree line: its ::before is the trunk, drawn with a border.
 const TREE_LINE = `( () => {
-	const li = document.querySelector( '.accessible-sitemap__section li' );
+	const li = document.querySelector( '.parich-sitemap__section li' );
 	const line = getComputedStyle( li, '::before' );
 	return {
 		opacity: line.opacity,
@@ -41,13 +41,13 @@ const TREE_LINE = `( () => {
 // What a reader sees of the table of contents, back links and folded categories.
 const PRINTED = `( () => {
 	const visible = ( el ) => !! el && el.checkVisibility();
-	const closed = [ ...document.querySelectorAll( '.accessible-sitemap details:not([open])' ) ];
+	const closed = [ ...document.querySelectorAll( '.parich-sitemap details:not([open])' ) ];
 	const inside = closed.map( ( details ) => details.querySelector( 'ul a' ) ).filter( Boolean );
 	return {
 		print: matchMedia( 'print' ).matches,
-		toc: visible( document.querySelector( '.accessible-sitemap__toc' ) ) || visible( document.querySelector( '.accessible-sitemap__toc-label' ) ),
-		back: [ ...document.querySelectorAll( '.accessible-sitemap__back' ) ].some( visible ),
-		backLinks: document.querySelectorAll( '.accessible-sitemap__back' ).length,
+		toc: visible( document.querySelector( '.parich-sitemap__toc' ) ) || visible( document.querySelector( '.parich-sitemap__toc-label' ) ),
+		back: [ ...document.querySelectorAll( '.parich-sitemap__back' ) ].some( visible ),
+		backLinks: document.querySelectorAll( '.parich-sitemap__back' ).length,
 		closed: closed.length,
 		visibleInClosed: inside.filter( visible ).length,
 		arrow: closed.length ? getComputedStyle( closed[ 0 ].querySelector( 'summary' ) ).listStyleType : '',
@@ -235,7 +235,7 @@ async function main() {
 		process.exit( 1 );
 	}
 
-	const profile = fs.mkdtempSync( path.join( os.tmpdir(), 'ahs-media-' ) );
+	const profile = fs.mkdtempSync( path.join( os.tmpdir(), 'pas-media-' ) );
 	const page = await open( browser, profile );
 	try {
 		await page.load( TREE_PAGE );
