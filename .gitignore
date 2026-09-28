@@ -38,5 +38,5 @@ tests/a11y/out/
 # Phased plans made with /plan: local working notes
 docs/plans/
 
-# Review emails and other private notes
-docs/text.md
+# WordPress.org review emails and draft replies (private)
+docs/wporg-review/
